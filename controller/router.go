@@ -5,8 +5,8 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-// MakRouter 是路由
-func MakRouter(r *gin.Engine) {
+// MakeRouter 是路由
+func MakeRouter(r *gin.Engine) {
 	// 用户信息
 	r.GET("/v1/user/:userId/info", views.ActionUserInfo)
 	// 用户登录
@@ -18,9 +18,9 @@ func MakRouter(r *gin.Engine) {
 	// 取关
 	r.DELETE("/v1/user/follow/:userId", views.AuthHandler(), views.ActionDelUserFollow)
 	// 关注列表
-	r.GET("/v1/user/:userId/follows", views.AuthHandler(), views.ActionUserFollowList)
+	r.GET("/v1/user/:userId/follows", views.ActionUserFollowList)
 	// 粉丝列表
-	r.GET("/v1/user/:userId/fans", views.AuthHandler(), views.ActionUserFansList)
+	r.GET("/v1/user/:userId/fans", views.ActionUserFansList)
 	// 删除粉丝
 	r.DELETE("/v1/user/fans/:userId", views.AuthHandler(), views.ActionDelUserFans)
 }

@@ -9,8 +9,14 @@ func ActionUserInfo(c *gin.Context) {
 	// 定义返回值
 	var ret = map[string]interface{}{}
 
+	userId := c.Param("userId")
+
+	ret["userId"] = userId
+
 	c.JSON(200, gin.H{
-		"ret": ret,
+		"data":       ret,
+		"error_code": 0,
+		"msg":        "success.",
 	})
 }
 
