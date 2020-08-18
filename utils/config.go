@@ -4,11 +4,11 @@ import "fmt"
 
 const (
 	DbType = "mysql"
-	DbHost = "118.31.237.114"
-	DbPort = "3307"
+	DbHost = "49.233.185.3"
+	DbPort = "3306"
 	DbUser = "root"
 	DbPass = "123456"
-	DbName = "HackInBox"
+	DbName = "feedback"
 
 	RedisHost     = "118.31.237.114"
 	RedisPort     = "6379"
