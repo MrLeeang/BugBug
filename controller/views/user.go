@@ -1,20 +1,26 @@
 package views
 
 import (
+	"BugBug/service"
 	"github.com/gin-gonic/gin"
 )
 
 // ActionUserInfo 用户信息
 func ActionUserInfo(c *gin.Context) {
-	// 定义返回值
-	var ret = map[string]interface{}{}
 
 	userId := c.Param("userId")
 
-	ret["userId"] = userId
+	// 用户信息
+	userInfo := service.GetUserById(userId)
+	if userInfo["id"] != nil {
+		// 点赞数量
+		userInfo["vote_count"] = service.CountVoteByUserId(userId)
+		// 采纳数量
+		userInfo["adopt_count"] = service.CountAdoptByUserId(userId)
+	}
 
 	c.JSON(200, gin.H{
-		"data":       ret,
+		"data":       userInfo,
 		"error_code": 0,
 		"msg":        "success.",
 	})

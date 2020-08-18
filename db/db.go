@@ -1,7 +1,7 @@
 package db
 
 import (
-	"HackInBox.online/utils"
+	"BugBug/utils"
 	"fmt"
 	// 数据库驱动
 	_ "github.com/go-sql-driver/mysql"

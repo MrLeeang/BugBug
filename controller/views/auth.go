@@ -1,7 +1,7 @@
 package views
 
 import (
-	"HackInBox.online/utils"
+	"BugBug/utils"
 	"github.com/gin-contrib/sessions"
 	"github.com/gin-gonic/gin"
 )

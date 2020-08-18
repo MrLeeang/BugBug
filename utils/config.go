@@ -7,7 +7,7 @@ const (
 	DbHost = "49.233.185.3"
 	DbPort = "3306"
 	DbUser = "root"
-	DbPass = "123456"
+	DbPass = "reader"
 	DbName = "feedback"
 
 	RedisHost     = "118.31.237.114"

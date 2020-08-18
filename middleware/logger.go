@@ -3,7 +3,7 @@ package middleware
 import (
 	"time"
 
-	"HackInBox.online/utils"
+	"BugBug/utils"
 	"github.com/gin-gonic/gin"
 )
 

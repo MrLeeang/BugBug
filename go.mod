@@ -1,4 +1,4 @@
-module HackInBox.online
+module BugBug
 
 go 1.14
 

@@ -1,7 +1,7 @@
 package controller
 
 import (
-	"HackInBox.online/controller/views"
+	"BugBug/controller/views"
 	"github.com/gin-gonic/gin"
 )
 
@@ -23,4 +23,6 @@ func MakeRouter(r *gin.Engine) {
 	r.GET("/v1/user/:userId/fans", views.ActionUserFansList)
 	// 删除粉丝
 	r.DELETE("/v1/user/fans/:userId", views.AuthHandler(), views.ActionDelUserFans)
+	// 发布帖子
+	r.POST("/v1/post/publish", views.AuthHandler(), views.ActionPostPublish)
 }

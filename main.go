@@ -1,9 +1,9 @@
 package main
 
 import (
-	"HackInBox.online/controller"
-	"HackInBox.online/middleware"
-	"HackInBox.online/utils"
+	"BugBug/controller"
+	"BugBug/middleware"
+	"BugBug/utils"
 	"github.com/gin-contrib/sessions"
 	"github.com/gin-contrib/sessions/redis"
 	"github.com/gin-gonic/gin"
