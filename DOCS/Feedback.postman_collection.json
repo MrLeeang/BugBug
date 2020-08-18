@@ -1,0 +1,3014 @@
+{
+	"info": {
+		"_postman_id": "7defbc87-1785-4be6-ba04-d9cfd92ceaf4",
+		"name": "Feedback",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "粉丝",
+			"item": [
+				{
+					"name": "关注用户",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "remark",
+									"value": "大V",
+									"type": "text"
+								}
+							],
+							"options": {
+								"formdata": {}
+							}
+						},
+						"url": {
+							"raw": "{{Host}}/user/follow/2",
+							"host": [
+								"{{Host}}"
+							],
+							"path": [
+								"user",
+								"follow",
+								"2"
+							]
+						},
+						"description": "关注某个人"
+					},
+					"response": [
+						{
+							"name": "成功",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "token",
+										"value": "{{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{Host}}/user/follow/1",
+									"host": [
+										"{{Host}}"
+									],
+									"path": [
+										"user",
+										"follow",
+										"1"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Server",
+									"value": "Hyperf"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 26 Apr 2020 06:26:11 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "137"
+								},
+								{
+									"key": "Content-Encoding",
+									"value": "gzip"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"error_code\": 0,\n    \"msg\": \"关注成功.\",\n    \"data\": {\n        \"id\": 4,\n        \"uid\": 2,\n        \"fid\": 1,\n        \"remark\": \"\",\n        \"created_at\": \"2020-04-26 14:26:04\",\n        \"updated_at\": \"2020-04-26 14:26:04\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "取消关注",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {}
+							}
+						},
+						"url": {
+							"raw": "{{Host}}/user/follow/1",
+							"host": [
+								"{{Host}}"
+							],
+							"path": [
+								"user",
+								"follow",
+								"1"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "成功",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "token",
+										"type": "text",
+										"value": "{{token}}"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{Host}}/user/follow/1",
+									"host": [
+										"{{Host}}"
+									],
+									"path": [
+										"user",
+										"follow",
+										"1"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Server",
+									"value": "Hyperf"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 26 Apr 2020 06:26:34 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "68"
+								},
+								{
+									"key": "Content-Encoding",
+									"value": "gzip"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"error_code\": 0,\n    \"msg\": \"已取消.\",\n    \"data\": true\n}"
+						}
+					]
+				},
+				{
+					"name": "用户的关注列表[NoAuth]",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "token",
+								"type": "text",
+								"value": "{{token}}"
+							}
+						],
+						"url": {
+							"raw": "{{Host}}/user/1/follows?skip=0",
+							"host": [
+								"{{Host}}"
+							],
+							"path": [
+								"user",
+								"1",
+								"follows"
+							],
+							"query": [
+								{
+									"key": "skip",
+									"value": "0",
+									"description": "开始条数"
+								},
+								{
+									"key": "",
+									"value": "",
+									"disabled": true
+								}
+							]
+						},
+						"description": "1: 用户ID"
+					},
+					"response": [
+						{
+							"name": "成功",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "token",
+										"value": "{{token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{Host}}/user/follows?skip=0",
+									"host": [
+										"{{Host}}"
+									],
+									"path": [
+										"user",
+										"follows"
+									],
+									"query": [
+										{
+											"key": "skip",
+											"value": "0",
+											"description": "开始条数"
+										},
+										{
+											"key": "",
+											"value": "",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Server",
+									"value": "Hyperf"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 26 Apr 2020 06:48:38 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "263"
+								},
+								{
+									"key": "Content-Encoding",
+									"value": "gzip"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"error_code\": 0,\n    \"msg\": \"ok\",\n    \"data\": [\n        {\n            \"id\": 5,\n            \"uid\": 2,\n            \"fid\": 1,\n            \"remark\": \"\",\n            \"created_at\": \"2020-04-26 14:27:33\",\n            \"updated_at\": \"2020-04-26 14:27:33\",\n            \"follow_info\": {\n                \"id\": 1,\n                \"nickname\": \"阿金\",\n                \"avatar\": \"https://upload.jianshu.io/users/upload_avatars/1498713/62343da76be4?imageMogr2/auto-orient/strip|imageView2/1/w/240/h/240\",\n                \"sex\": 1\n            }\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "用户的粉丝列表[NoAuth]",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{Host}}/user/1/fans?skip=0",
+							"host": [
+								"{{Host}}"
+							],
+							"path": [
+								"user",
+								"1",
+								"fans"
+							],
+							"query": [
+								{
+									"key": "skip",
+									"value": "0",
+									"description": "开始条数"
+								},
+								{
+									"key": "",
+									"value": "",
+									"disabled": true
+								}
+							]
+						},
+						"description": "1:用户ID"
+					},
+					"response": []
+				},
+				{
+					"name": "删除粉丝",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {}
+							}
+						},
+						"url": {
+							"raw": "{{Host}}/user/fans/1",
+							"host": [
+								"{{Host}}"
+							],
+							"path": [
+								"user",
+								"fans",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "圈子",
+			"item": [
+				{
+					"name": "修改圈子",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "小米黑技术",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "introduction",
+									"value": "专讲小米的黑科技2",
+									"type": "text"
+								},
+								{
+									"key": "category",
+									"value": "1002",
+									"type": "text"
+								},
+								{
+									"key": "cover_bg",
+									"value": "",
+									"description": "封面图",
+									"type": "text"
+								},
+								{
+									"key": "logo",
+									"value": "",
+									"description": "logo图",
+									"type": "text"
+								}
+							],
+							"options": {
+								"formdata": {}
+							}
+						},
+						"url": {
+							"raw": "{{Host}}/circle/1/update",
+							"host": [
+								"{{Host}}"
+							],
+							"path": [
+								"circle",
+								"1",
+								"update"
+							]
+						},
+						"description": "只有积分等级大于1级的才能创建.\n发贴可以赚积分"
+					},
+					"response": []
+				},
+				{
+					"name": "圈子列表[可以不登录]",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "token",
+								"type": "text",
+								"value": "{{token}}"
+							}
+						],
+						"url": {
+							"raw": "{{Host}}/circles?skip=0&keyword=良",
+							"host": [
+								"{{Host}}"
+							],
+							"path": [
+								"circles"
+							],
+							"query": [
+								{
+									"key": "skip",
+									"value": "0",
+									"description": "分页"
+								},
+								{
+									"key": "keyword",
+									"value": "良"
+								}
+							]
+						},
+						"description": "可以使用关键字搜索"
+					},
+					"response": [
+						{
+							"name": "圈子列表",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "token",
+										"value": "{{token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{Host}}/circles?skip=0&keyword=小",
+									"host": [
+										"{{Host}}"
+									],
+									"path": [
+										"circles"
+									],
+									"query": [
+										{
+											"key": "skip",
+											"value": "0",
+											"description": "分页"
+										},
+										{
+											"key": "keyword",
+											"value": "小",
+											"description": "关键字"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Server",
+									"value": "Hyperf"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 26 Apr 2020 12:03:43 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "90"
+								},
+								{
+									"key": "Content-Encoding",
+									"value": "gzip"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"error_code\": 0,\n    \"msg\": \"ok\",\n    \"data\": [\n        {\n            \"id\": 2,\n            \"name\": \"小米黑技术\"\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "加入圈子",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {}
+							}
+						},
+						"url": {
+							"raw": "{{Host}}/circle/member/1",
+							"host": [
+								"{{Host}}"
+							],
+							"path": [
+								"circle",
+								"member",
+								"1"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "加入圈子",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "token",
+										"value": "{{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{Host}}/circle/member/1",
+									"host": [
+										"{{Host}}"
+									],
+									"path": [
+										"circle",
+										"member",
+										"1"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Server",
+									"value": "Hyperf"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 26 Apr 2020 12:41:36 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "121"
+								},
+								{
+									"key": "Content-Encoding",
+									"value": "gzip"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"error_code\": 0,\n    \"msg\": \"加入成功.\",\n    \"data\": {\n        \"id\": 1,\n        \"cid\": 1,\n        \"uid\": 1,\n        \"created_at\": \"2020-04-26 20:41:29\",\n        \"updated_at\": \"2020-04-26 20:41:29\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "退出圈子",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {}
+							}
+						},
+						"url": {
+							"raw": "{{Host}}/circle/member/2",
+							"host": [
+								"{{Host}}"
+							],
+							"path": [
+								"circle",
+								"member",
+								"2"
+							]
+						},
+						"description": "管理员自己不能退出"
+					},
+					"response": []
+				},
+				{
+					"name": "圈子成员列表[NoAuth]",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{Host}}/circle/1/members?skip=0",
+							"host": [
+								"{{Host}}"
+							],
+							"path": [
+								"circle",
+								"1",
+								"members"
+							],
+							"query": [
+								{
+									"key": "skip",
+									"value": "0"
+								}
+							]
+						},
+						"description": "path中的数字代表圈子ID"
+					},
+					"response": [
+						{
+							"name": "圈子成员列表[NoAuth]",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "token",
+										"value": "{{token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{Host}}/circle/1/members",
+									"host": [
+										"{{Host}}"
+									],
+									"path": [
+										"circle",
+										"1",
+										"members"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Server",
+									"value": "Hyperf"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 29 Apr 2020 00:44:56 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "101"
+								},
+								{
+									"key": "Content-Encoding",
+									"value": "br"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"error_code\": 0,\n    \"msg\": \"ok\",\n    \"data\": [\n        {\n            \"id\": 1,\n            \"uid\": 1,\n            \"cid\": 1,\n            \"user\": {\n                \"id\": 1,\n                \"nickname\": \"\",\n                \"avatar\": \"\",\n                \"sex\": 1\n            }\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "我加入的圈子",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{Host}}/user/circles",
+							"host": [
+								"{{Host}}"
+							],
+							"path": [
+								"user",
+								"circles"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "创建圈子",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "良品铺子",
+									"type": "text"
+								},
+								{
+									"key": "introduction",
+									"value": "吃货的最爱",
+									"type": "text"
+								},
+								{
+									"key": "category",
+									"value": "1002",
+									"type": "text"
+								},
+								{
+									"key": "cover_bg",
+									"value": "",
+									"description": "封面图",
+									"type": "text"
+								},
+								{
+									"key": "logo",
+									"value": "",
+									"description": "logo图",
+									"type": "text"
+								}
+							],
+							"options": {
+								"formdata": {}
+							}
+						},
+						"url": {
+							"raw": "{{Host}}/circle",
+							"host": [
+								"{{Host}}"
+							],
+							"path": [
+								"circle"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "圈子基本信息[NotAuth]",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{Host}}/circle/1/info",
+							"host": [
+								"{{Host}}"
+							],
+							"path": [
+								"circle",
+								"1",
+								"info"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "圈子基本信息[NotAuth]",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "token",
+										"value": "{{token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{Host}}/circle/1/info",
+									"host": [
+										"{{Host}}"
+									],
+									"path": [
+										"circle",
+										"1",
+										"info"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Server",
+									"value": "Hyperf"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 14 May 2020 05:08:40 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "301"
+								},
+								{
+									"key": "Content-Encoding",
+									"value": "br"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"error_code\": 0,\n    \"msg\": \"ok\",\n    \"data\": {\n        \"id\": 1,\n        \"name\": \"良品铺子\",\n        \"introduction\": \"吃货的最爱\",\n        \"category\": 1002,\n        \"owner\": 3,\n        \"status\": 1,\n        \"cover_bg\": \"\",\n        \"logo\": \"\",\n        \"created_at\": \"2020-04-29 08:56:32\",\n        \"updated_at\": \"2020-04-29 08:56:32\",\n        \"deleted_at\": null,\n        \"members_count\": 2,\n        \"posts_count\": 5,\n        \"is_owner\": false,\n        \"is_join\": true,\n        \"is_admin\": false,\n        \"owner_info\": {\n            \"id\": 3,\n            \"nickname\": \"阿木\",\n            \"avatar\": \"\",\n            \"sex\": 1\n        }\n    }\n}"
+						}
+					]
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "话题",
+			"item": [
+				{
+					"name": "新建话题",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "title",
+									"value": "点赞",
+									"description": "话题名称",
+									"type": "text"
+								},
+								{
+									"key": "cid",
+									"value": "2",
+									"description": "圈子ID",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{Host}}/topic/create",
+							"host": [
+								"{{Host}}"
+							],
+							"path": [
+								"topic",
+								"create"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "新建话题",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "token",
+										"value": "{{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "title",
+											"value": "垃圾vivo",
+											"description": "话题名称",
+											"type": "text"
+										},
+										{
+											"key": "cid",
+											"value": "1",
+											"description": "圈子ID",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{Host}}/topic/create",
+									"host": [
+										"{{Host}}"
+									],
+									"path": [
+										"topic",
+										"create"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Server",
+									"value": "Hyperf"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 28 Apr 2020 22:47:03 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "111"
+								},
+								{
+									"key": "Content-Encoding",
+									"value": "br"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"title\": \"垃圾vivo\",\n    \"uid\": 1,\n    \"cid\": 1,\n    \"updated_at\": \"2020-04-29 06:47:03\",\n    \"created_at\": \"2020-04-29 06:47:03\",\n    \"id\": 3\n}"
+						}
+					]
+				},
+				{
+					"name": "删除话题",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "title",
+									"value": "垃圾vivo",
+									"description": "话题名称",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "cid",
+									"value": "1",
+									"description": "圈子ID",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{Host}}/topic/4/delete",
+							"host": [
+								"{{Host}}"
+							],
+							"path": [
+								"topic",
+								"4",
+								"delete"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "删除话题",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "token",
+										"value": "{{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "title",
+											"value": "垃圾vivo",
+											"description": "话题名称",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "cid",
+											"value": "1",
+											"description": "圈子ID",
+											"type": "text",
+											"disabled": true
+										}
+									]
+								},
+								"url": {
+									"raw": "{{Host}}/topic/4/delete",
+									"host": [
+										"{{Host}}"
+									],
+									"path": [
+										"topic",
+										"4",
+										"delete"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Server",
+									"value": "Hyperf"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 28 Apr 2020 23:03:17 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "54"
+								},
+								{
+									"key": "Content-Encoding",
+									"value": "br"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"error_code\": 0,\n    \"msg\": \"删除成功.\",\n    \"data\": true\n}"
+						}
+					]
+				},
+				{
+					"name": "圈子的话题列表",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "token",
+								"type": "text",
+								"value": "{{token}}"
+							}
+						],
+						"url": {
+							"raw": "{{Host}}/circle/1/topics",
+							"host": [
+								"{{Host}}"
+							],
+							"path": [
+								"circle",
+								"1",
+								"topics"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "圈子的话题列表",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "token",
+										"type": "text",
+										"value": "{{token}}"
+									}
+								],
+								"url": {
+									"raw": "{{Host}}/circle/1/topics",
+									"host": [
+										"{{Host}}"
+									],
+									"path": [
+										"circle",
+										"1",
+										"topics"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Server",
+									"value": "Hyperf"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 28 Apr 2020 23:15:43 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "208"
+								},
+								{
+									"key": "Content-Encoding",
+									"value": "br"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"error_code\": 0,\n    \"msg\": \"ok\",\n    \"data\": [\n        {\n            \"id\": 4,\n            \"uid\": 1,\n            \"cid\": 1,\n            \"title\": \"垃圾vivo\",\n            \"created_at\": \"2020-04-29 07:01:52\",\n            \"updated_at\": \"2020-04-29 07:01:52\",\n            \"deleted_at\": null\n        },\n        {\n            \"id\": 3,\n            \"uid\": 1,\n            \"cid\": 1,\n            \"title\": \"垃圾苹果\",\n            \"created_at\": \"2020-04-29 07:01:40\",\n            \"updated_at\": \"2020-04-29 07:01:40\",\n            \"deleted_at\": null\n        },\n        {\n            \"id\": 2,\n            \"uid\": 1,\n            \"cid\": 1,\n            \"title\": \"垃圾小米\",\n            \"created_at\": \"2020-04-29 07:01:31\",\n            \"updated_at\": \"2020-04-29 07:01:31\",\n            \"deleted_at\": null\n        },\n        {\n            \"id\": 1,\n            \"uid\": 1,\n            \"cid\": 1,\n            \"title\": \"垃圾华为\",\n            \"created_at\": \"2020-04-29 07:01:18\",\n            \"updated_at\": \"2020-04-29 07:01:18\",\n            \"deleted_at\": null\n        }\n    ]\n}"
+						}
+					]
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "贴子",
+			"item": [
+				{
+					"name": "视频上传测试",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": ""
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "发布贴子",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "cid",
+									"value": "2",
+									"description": "圈子ID",
+									"type": "text"
+								},
+								{
+									"key": "content",
+									"value": "来得全的",
+									"description": "文字内容",
+									"type": "text"
+								},
+								{
+									"key": "imgs[]",
+									"value": "http://img.xianglian.group/image/bug.png",
+									"description": "图片1张",
+									"type": "text"
+								},
+								{
+									"key": "imgs[]",
+									"value": "http://img.xianglian.group/image/test.gif",
+									"description": "图片2张",
+									"type": "text"
+								},
+								{
+									"key": "video",
+									"value": "http://img.xianglian.group/video/test.mp4",
+									"description": "视频链接",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "topics[]",
+									"value": "1",
+									"description": "话题1",
+									"type": "text"
+								},
+								{
+									"key": "topics[]",
+									"value": "2",
+									"description": "话题2",
+									"type": "text"
+								},
+								{
+									"key": "coordinate",
+									"value": "11232103434,1224234234",
+									"description": "地图坐标",
+									"type": "text"
+								},
+								{
+									"key": "link",
+									"value": "http://www.baidu.com",
+									"description": "链接",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{Host}}/post/publish",
+							"host": [
+								"{{Host}}"
+							],
+							"path": [
+								"post",
+								"publish"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "不存在的圈子",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "token",
+										"value": "{{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "cid",
+											"value": "1",
+											"description": "圈子ID",
+											"type": "text"
+										},
+										{
+											"key": "content",
+											"value": "纯文本",
+											"description": "文字内容",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{Host}}/post/publish",
+									"host": [
+										"{{Host}}"
+									],
+									"path": [
+										"post",
+										"publish"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Server",
+									"value": "Hyperf"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 28 Apr 2020 21:46:39 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "91"
+								},
+								{
+									"key": "Content-Encoding",
+									"value": "br"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"error_code\": 41002,\n    \"msg\": \"圈子不存在,或不允许发贴.\",\n    \"data\": null,\n    \"trace\": \"\"\n}"
+						},
+						{
+							"name": "纯图片",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "token",
+										"value": "{{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "cid",
+											"value": "1",
+											"description": "圈子ID",
+											"type": "text"
+										},
+										{
+											"key": "content",
+											"value": "",
+											"description": "文字内容",
+											"type": "text"
+										},
+										{
+											"key": "imgs[]",
+											"value": "http://img.xianglian.group/image/bug.png",
+											"description": "图片1张",
+											"type": "text"
+										},
+										{
+											"key": "imgs[]",
+											"value": "http://img.xianglian.group/image/test.gif",
+											"description": "图片2张",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{Host}}/post/publish",
+									"host": [
+										"{{Host}}"
+									],
+									"path": [
+										"post",
+										"publish"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Server",
+									"value": "Hyperf"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 28 Apr 2020 22:21:43 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "341"
+								},
+								{
+									"key": "Content-Encoding",
+									"value": "br"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"error_code\": 0,\n    \"msg\": \"发布成功.\",\n    \"data\": {\n        \"uid\": 1,\n        \"cid\": 1,\n        \"content\": \"\",\n        \"summary\": \"\",\n        \"link\": null,\n        \"type\": 1,\n        \"updated_at\": \"2020-04-29 06:21:43\",\n        \"created_at\": \"2020-04-29 06:21:43\",\n        \"id\": 22,\n        \"topics\": [],\n        \"imgs\": [\n            {\n                \"id\": 17,\n                \"uid\": 1,\n                \"pid\": 22,\n                \"url\": \"http://img.xianglian.group/image/bug.png\",\n                \"type\": 1,\n                \"views\": 0,\n                \"created_at\": \"2020-04-29 06:21:43\",\n                \"updated_at\": \"2020-04-29 06:21:43\"\n            },\n            {\n                \"id\": 18,\n                \"uid\": 1,\n                \"pid\": 22,\n                \"url\": \"http://img.xianglian.group/image/test.gif\",\n                \"type\": 1,\n                \"views\": 0,\n                \"created_at\": \"2020-04-29 06:21:43\",\n                \"updated_at\": \"2020-04-29 06:21:43\"\n            }\n        ],\n        \"video\": null,\n        \"user\": {\n            \"id\": 1,\n            \"nickname\": \"\",\n            \"avatar\": \"\",\n            \"sex\": 1\n        },\n        \"circle\": {\n            \"id\": 1,\n            \"name\": \"小米黑技术\",\n            \"logo\": \"\"\n        }\n    }\n}"
+						},
+						{
+							"name": "纯图片",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "token",
+										"value": "{{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "cid",
+											"value": "1",
+											"description": "圈子ID",
+											"type": "text"
+										},
+										{
+											"key": "content",
+											"value": "",
+											"description": "文字内容",
+											"type": "text"
+										},
+										{
+											"key": "imgs[]",
+											"value": "http://img.xianglian.group/image/bug.png",
+											"description": "图片1张",
+											"type": "text"
+										},
+										{
+											"key": "imgs[]",
+											"value": "http://img.xianglian.group/image/test.gif",
+											"description": "图片2张",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{Host}}/post/publish",
+									"host": [
+										"{{Host}}"
+									],
+									"path": [
+										"post",
+										"publish"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Server",
+									"value": "Hyperf"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 28 Apr 2020 22:19:53 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "368"
+								},
+								{
+									"key": "Content-Encoding",
+									"value": "br"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"error_code\": 0,\n    \"msg\": \"发布成功.\",\n    \"data\": {\n        \"uid\": 1,\n        \"cid\": 1,\n        \"content\": \"纯文本fseterteterterttttttttttttttttttttttt\",\n        \"summary\": \"纯文本fseterteterterttttttttttttttttttttttt\",\n        \"link\": null,\n        \"type\": 0,\n        \"updated_at\": \"2020-04-29 06:19:53\",\n        \"created_at\": \"2020-04-29 06:19:53\",\n        \"id\": 21,\n        \"topics\": [],\n        \"imgs\": [\n            {\n                \"id\": 15,\n                \"uid\": 1,\n                \"pid\": 21,\n                \"url\": \"http://img.xianglian.group/image/bug.png\",\n                \"type\": 1,\n                \"views\": 0,\n                \"created_at\": \"2020-04-29 06:19:53\",\n                \"updated_at\": \"2020-04-29 06:19:53\"\n            },\n            {\n                \"id\": 16,\n                \"uid\": 1,\n                \"pid\": 21,\n                \"url\": \"http://img.xianglian.group/image/test.gif\",\n                \"type\": 1,\n                \"views\": 0,\n                \"created_at\": \"2020-04-29 06:19:53\",\n                \"updated_at\": \"2020-04-29 06:19:53\"\n            }\n        ],\n        \"video\": null,\n        \"user\": {\n            \"id\": 1,\n            \"nickname\": \"\",\n            \"avatar\": \"\",\n            \"sex\": 1\n        },\n        \"circle\": {\n            \"id\": 1,\n            \"name\": \"小米黑技术\",\n            \"logo\": \"\"\n        }\n    }\n}"
+						},
+						{
+							"name": "纯视频",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "token",
+										"value": "{{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "cid",
+											"value": "1",
+											"description": "圈子ID",
+											"type": "text"
+										},
+										{
+											"key": "content",
+											"value": "",
+											"description": "文字内容",
+											"type": "text"
+										},
+										{
+											"key": "imgs[]",
+											"value": "http://img.xianglian.group/image/bug.png",
+											"description": "图片1张",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "imgs[]",
+											"value": "http://img.xianglian.group/image/test.gif",
+											"description": "图片2张",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "video",
+											"value": "http://img.xianglian.group/video/test.mp4",
+											"description": "视频",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{Host}}/post/publish",
+									"host": [
+										"{{Host}}"
+									],
+									"path": [
+										"post",
+										"publish"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Server",
+									"value": "Hyperf"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 28 Apr 2020 22:25:05 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "384"
+								},
+								{
+									"key": "Content-Encoding",
+									"value": "br"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"error_code\": 0,\n    \"msg\": \"发布成功.\",\n    \"data\": {\n        \"uid\": 1,\n        \"cid\": 1,\n        \"content\": \"\",\n        \"summary\": \"\",\n        \"link\": null,\n        \"type\": 2,\n        \"updated_at\": \"2020-04-29 06:25:05\",\n        \"created_at\": \"2020-04-29 06:25:05\",\n        \"id\": 24,\n        \"topics\": [],\n        \"imgs\": [],\n        \"video\": {\n            \"id\": 1,\n            \"uid\": 1,\n            \"pid\": 24,\n            \"url\": \"http://img.xianglian.group/video/test.mp4\",\n            \"cover\": \"http://img.xianglian.group/video/test.mp4?vframe/jpg/offset/5\",\n            \"duration\": 7.93,\n            \"width\": 960,\n            \"height\": 544,\n            \"views\": 0,\n            \"created_at\": \"2020-04-29 06:25:05\",\n            \"updated_at\": \"2020-04-29 06:25:05\"\n        },\n        \"user\": {\n            \"id\": 1,\n            \"nickname\": \"阿木\",\n            \"avatar\": \"\",\n            \"sex\": 1\n        },\n        \"circle\": {\n            \"id\": 1,\n            \"name\": \"小米黑技术\",\n            \"logo\": \"\"\n        }\n    }\n}"
+						},
+						{
+							"name": "纯文本发成功",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "token",
+										"value": "{{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "cid",
+											"value": "1",
+											"description": "圈子ID",
+											"type": "text"
+										},
+										{
+											"key": "content",
+											"value": "纯文本",
+											"description": "文字内容",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{Host}}/post/publish",
+									"host": [
+										"{{Host}}"
+									],
+									"path": [
+										"post",
+										"publish"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Server",
+									"value": "Hyperf"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 28 Apr 2020 21:40:32 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "171"
+								},
+								{
+									"key": "Content-Encoding",
+									"value": "br"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"error_code\": 0,\n    \"msg\": \"发布成功.\",\n    \"data\": {\n        \"uid\": 1,\n        \"cid\": 1,\n        \"content\": \"纯文本\",\n        \"link\": null,\n        \"type\": 0,\n        \"updated_at\": \"2020-04-29 05:40:32\",\n        \"created_at\": \"2020-04-29 05:40:32\",\n        \"id\": 4\n    }\n}"
+						},
+						{
+							"name": "有话题的",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "token",
+										"value": "{{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "cid",
+											"value": "2",
+											"description": "圈子ID",
+											"type": "text"
+										},
+										{
+											"key": "content",
+											"value": "来得全的",
+											"description": "文字内容",
+											"type": "text"
+										},
+										{
+											"key": "imgs[]",
+											"value": "http://img.xianglian.group/image/bug.png",
+											"description": "图片1张",
+											"type": "text"
+										},
+										{
+											"key": "imgs[]",
+											"value": "http://img.xianglian.group/image/test.gif",
+											"description": "图片2张",
+											"type": "text"
+										},
+										{
+											"key": "video",
+											"value": "http://img.xianglian.group/video/test.mp4",
+											"description": "视频",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "topics[]",
+											"value": "1",
+											"description": "话题1",
+											"type": "text"
+										},
+										{
+											"key": "topics[]",
+											"value": "2",
+											"description": "话题2",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{Host}}/post/publish",
+									"host": [
+										"{{Host}}"
+									],
+									"path": [
+										"post",
+										"publish"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Server",
+									"value": "Hyperf"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 28 Apr 2020 23:41:35 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "458"
+								},
+								{
+									"key": "Content-Encoding",
+									"value": "br"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"error_code\": 0,\n    \"msg\": \"发布成功.\",\n    \"data\": {\n        \"uid\": 1,\n        \"cid\": 2,\n        \"content\": \"来得全的\",\n        \"summary\": \"来得全的\",\n        \"link\": null,\n        \"type\": 0,\n        \"updated_at\": \"2020-04-29 07:41:35\",\n        \"created_at\": \"2020-04-29 07:41:35\",\n        \"id\": 2,\n        \"topics\": [\n            {\n                \"id\": 1,\n                \"uid\": 1,\n                \"cid\": 2,\n                \"title\": \"产品反馈\",\n                \"created_at\": \"2020-04-29 07:39:39\",\n                \"updated_at\": \"2020-04-29 07:39:39\",\n                \"deleted_at\": null,\n                \"pivot\": {\n                    \"pid\": 2,\n                    \"ctid\": 1,\n                    \"created_at\": \"2020-04-29 07:41:35\",\n                    \"updated_at\": \"2020-04-29 07:41:35\"\n                }\n            },\n            {\n                \"id\": 2,\n                \"uid\": 1,\n                \"cid\": 2,\n                \"title\": \"点赞\",\n                \"created_at\": \"2020-04-29 07:40:09\",\n                \"updated_at\": \"2020-04-29 07:40:09\",\n                \"deleted_at\": null,\n                \"pivot\": {\n                    \"pid\": 2,\n                    \"ctid\": 2,\n                    \"created_at\": \"2020-04-29 07:41:35\",\n                    \"updated_at\": \"2020-04-29 07:41:35\"\n                }\n            }\n        ],\n        \"imgs\": [\n            {\n                \"id\": 1,\n                \"uid\": 1,\n                \"pid\": 2,\n                \"url\": \"http://img.xianglian.group/image/bug.png\",\n                \"type\": 1,\n                \"views\": 0,\n                \"created_at\": \"2020-04-29 07:41:35\",\n                \"updated_at\": \"2020-04-29 07:41:35\",\n                \"deleted_at\": null\n            },\n            {\n                \"id\": 2,\n                \"uid\": 1,\n                \"pid\": 2,\n                \"url\": \"http://img.xianglian.group/image/test.gif\",\n                \"type\": 1,\n                \"views\": 0,\n                \"created_at\": \"2020-04-29 07:41:35\",\n                \"updated_at\": \"2020-04-29 07:41:35\",\n                \"deleted_at\": null\n            }\n        ],\n        \"video\": null,\n        \"user\": {\n            \"id\": 1,\n            \"nickname\": \"\",\n            \"avatar\": \"\",\n            \"sex\": 1\n        },\n        \"circle\": {\n            \"id\": 2,\n            \"name\": \"良品铺子\",\n            \"logo\": \"\"\n        }\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "管理员删除贴子",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{Host}}/post/2/delete",
+							"host": [
+								"{{Host}}"
+							],
+							"path": [
+								"post",
+								"2",
+								"delete"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "管理员删除贴子",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "token",
+										"value": "{{token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{Host}}/post/2/delete",
+									"host": [
+										"{{Host}}"
+									],
+									"path": [
+										"post",
+										"2",
+										"delete"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Server",
+									"value": "Hyperf"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 28 Apr 2020 23:50:54 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "54"
+								},
+								{
+									"key": "Content-Encoding",
+									"value": "br"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"error_code\": 0,\n    \"msg\": \"删除成功.\",\n    \"data\": true\n}"
+						}
+					]
+				},
+				{
+					"name": "圈子的贴子列表[可以不登录]",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "token",
+								"value": "{{token}}",
+								"description": "token",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{Host}}/circle/1/posts",
+							"host": [
+								"{{Host}}"
+							],
+							"path": [
+								"circle",
+								"1",
+								"posts"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "圈子的贴子列表",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "token",
+										"value": "{{token}}",
+										"description": "token",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{Host}}/circle/2/posts",
+									"host": [
+										"{{Host}}"
+									],
+									"path": [
+										"circle",
+										"2",
+										"posts"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Server",
+									"value": "Hyperf"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 29 Apr 2020 00:00:32 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "722"
+								},
+								{
+									"key": "Content-Encoding",
+									"value": "br"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"error_code\": 0,\n    \"msg\": \"ok\",\n    \"data\": [\n        {\n            \"id\": 5,\n            \"uid\": 1,\n            \"cid\": 2,\n            \"title\": \"\",\n            \"link\": \"http://www.baidu.com\",\n            \"gid\": null,\n            \"content\": \"来得全的\",\n            \"summary\": \"来得全的\",\n            \"coordinate\": \"11232103434,1224234234\",\n            \"type\": 0,\n            \"created_at\": \"2020-04-29 07:45:15\",\n            \"updated_at\": \"2020-04-29 07:45:15\",\n            \"deleted_at\": null,\n            \"topics\": [\n                {\n                    \"id\": 1,\n                    \"uid\": 1,\n                    \"cid\": 2,\n                    \"title\": \"产品反馈\",\n                    \"created_at\": \"2020-04-29 07:39:39\",\n                    \"updated_at\": \"2020-04-29 07:39:39\",\n                    \"deleted_at\": null,\n                    \"pivot\": {\n                        \"pid\": 5,\n                        \"ctid\": 1,\n                        \"created_at\": \"2020-04-29 07:45:15\",\n                        \"updated_at\": \"2020-04-29 07:45:15\"\n                    }\n                },\n                {\n                    \"id\": 2,\n                    \"uid\": 1,\n                    \"cid\": 2,\n                    \"title\": \"点赞\",\n                    \"created_at\": \"2020-04-29 07:40:09\",\n                    \"updated_at\": \"2020-04-29 07:40:09\",\n                    \"deleted_at\": null,\n                    \"pivot\": {\n                        \"pid\": 5,\n                        \"ctid\": 2,\n                        \"created_at\": \"2020-04-29 07:45:15\",\n                        \"updated_at\": \"2020-04-29 07:45:15\"\n                    }\n                }\n            ],\n            \"imgs\": [\n                {\n                    \"id\": 7,\n                    \"uid\": 1,\n                    \"pid\": 5,\n                    \"url\": \"http://img.xianglian.group/image/bug.png\",\n                    \"type\": 1,\n                    \"views\": 0,\n                    \"created_at\": \"2020-04-29 07:45:15\",\n                    \"updated_at\": \"2020-04-29 07:45:15\",\n                    \"deleted_at\": null\n                },\n                {\n                    \"id\": 8,\n                    \"uid\": 1,\n                    \"pid\": 5,\n                    \"url\": \"http://img.xianglian.group/image/test.gif\",\n                    \"type\": 1,\n                    \"views\": 0,\n                    \"created_at\": \"2020-04-29 07:45:15\",\n                    \"updated_at\": \"2020-04-29 07:45:15\",\n                    \"deleted_at\": null\n                }\n            ],\n            \"video\": null,\n            \"user\": {\n                \"id\": 1,\n                \"nickname\": \"\",\n                \"avatar\": \"\",\n                \"sex\": 1\n            },\n            \"circle\": {\n                \"id\": 2,\n                \"name\": \"良品铺子\",\n                \"logo\": \"\"\n            }\n        },\n        {\n            \"id\": 4,\n            \"uid\": 1,\n            \"cid\": 2,\n            \"title\": \"\",\n            \"link\": null,\n            \"gid\": null,\n            \"content\": \"来得全的\",\n            \"summary\": \"来得全的\",\n            \"coordinate\": \"11232103434,1224234234\",\n            \"type\": 0,\n            \"created_at\": \"2020-04-29 07:44:28\",\n            \"updated_at\": \"2020-04-29 07:44:28\",\n            \"deleted_at\": null,\n            \"topics\": [\n                {\n                    \"id\": 1,\n                    \"uid\": 1,\n                    \"cid\": 2,\n                    \"title\": \"产品反馈\",\n                    \"created_at\": \"2020-04-29 07:39:39\",\n                    \"updated_at\": \"2020-04-29 07:39:39\",\n                    \"deleted_at\": null,\n                    \"pivot\": {\n                        \"pid\": 4,\n                        \"ctid\": 1,\n                        \"created_at\": \"2020-04-29 07:44:28\",\n                        \"updated_at\": \"2020-04-29 07:44:28\"\n                    }\n                },\n                {\n                    \"id\": 2,\n                    \"uid\": 1,\n                    \"cid\": 2,\n                    \"title\": \"点赞\",\n                    \"created_at\": \"2020-04-29 07:40:09\",\n                    \"updated_at\": \"2020-04-29 07:40:09\",\n                    \"deleted_at\": null,\n                    \"pivot\": {\n                        \"pid\": 4,\n                        \"ctid\": 2,\n                        \"created_at\": \"2020-04-29 07:44:28\",\n                        \"updated_at\": \"2020-04-29 07:44:28\"\n                    }\n                }\n            ],\n            \"imgs\": [\n                {\n                    \"id\": 5,\n                    \"uid\": 1,\n                    \"pid\": 4,\n                    \"url\": \"http://img.xianglian.group/image/bug.png\",\n                    \"type\": 1,\n                    \"views\": 0,\n                    \"created_at\": \"2020-04-29 07:44:28\",\n                    \"updated_at\": \"2020-04-29 07:44:28\",\n                    \"deleted_at\": null\n                },\n                {\n                    \"id\": 6,\n                    \"uid\": 1,\n                    \"pid\": 4,\n                    \"url\": \"http://img.xianglian.group/image/test.gif\",\n                    \"type\": 1,\n                    \"views\": 0,\n                    \"created_at\": \"2020-04-29 07:44:28\",\n                    \"updated_at\": \"2020-04-29 07:44:28\",\n                    \"deleted_at\": null\n                }\n            ],\n            \"video\": null,\n            \"user\": {\n                \"id\": 1,\n                \"nickname\": \"\",\n                \"avatar\": \"\",\n                \"sex\": 1\n            },\n            \"circle\": {\n                \"id\": 2,\n                \"name\": \"良品铺子\",\n                \"logo\": \"\"\n            }\n        },\n        {\n            \"id\": 3,\n            \"uid\": 1,\n            \"cid\": 2,\n            \"title\": \"\",\n            \"link\": null,\n            \"gid\": null,\n            \"content\": \"来得全的\",\n            \"summary\": \"来得全的\",\n            \"coordinate\": \"\",\n            \"type\": 0,\n            \"created_at\": \"2020-04-29 07:43:13\",\n            \"updated_at\": \"2020-04-29 07:43:13\",\n            \"deleted_at\": null,\n            \"topics\": [\n                {\n                    \"id\": 1,\n                    \"uid\": 1,\n                    \"cid\": 2,\n                    \"title\": \"产品反馈\",\n                    \"created_at\": \"2020-04-29 07:39:39\",\n                    \"updated_at\": \"2020-04-29 07:39:39\",\n                    \"deleted_at\": null,\n                    \"pivot\": {\n                        \"pid\": 3,\n                        \"ctid\": 1,\n                        \"created_at\": \"2020-04-29 07:43:13\",\n                        \"updated_at\": \"2020-04-29 07:43:13\"\n                    }\n                },\n                {\n                    \"id\": 2,\n                    \"uid\": 1,\n                    \"cid\": 2,\n                    \"title\": \"点赞\",\n                    \"created_at\": \"2020-04-29 07:40:09\",\n                    \"updated_at\": \"2020-04-29 07:40:09\",\n                    \"deleted_at\": null,\n                    \"pivot\": {\n                        \"pid\": 3,\n                        \"ctid\": 2,\n                        \"created_at\": \"2020-04-29 07:43:13\",\n                        \"updated_at\": \"2020-04-29 07:43:13\"\n                    }\n                }\n            ],\n            \"imgs\": [\n                {\n                    \"id\": 3,\n                    \"uid\": 1,\n                    \"pid\": 3,\n                    \"url\": \"http://img.xianglian.group/image/bug.png\",\n                    \"type\": 1,\n                    \"views\": 0,\n                    \"created_at\": \"2020-04-29 07:43:13\",\n                    \"updated_at\": \"2020-04-29 07:43:13\",\n                    \"deleted_at\": null\n                },\n                {\n                    \"id\": 4,\n                    \"uid\": 1,\n                    \"pid\": 3,\n                    \"url\": \"http://img.xianglian.group/image/test.gif\",\n                    \"type\": 1,\n                    \"views\": 0,\n                    \"created_at\": \"2020-04-29 07:43:13\",\n                    \"updated_at\": \"2020-04-29 07:43:13\",\n                    \"deleted_at\": null\n                }\n            ],\n            \"video\": null,\n            \"user\": {\n                \"id\": 1,\n                \"nickname\": \"\",\n                \"avatar\": \"\",\n                \"sex\": 1\n            },\n            \"circle\": {\n                \"id\": 2,\n                \"name\": \"良品铺子\",\n                \"logo\": \"\"\n            }\n        },\n        {\n            \"id\": 1,\n            \"uid\": 1,\n            \"cid\": 2,\n            \"title\": \"\",\n            \"link\": null,\n            \"gid\": null,\n            \"content\": \"整得话题呢\",\n            \"summary\": \"整得话题呢\",\n            \"coordinate\": \"\",\n            \"type\": 0,\n            \"created_at\": \"2020-04-29 07:40:46\",\n            \"updated_at\": \"2020-04-29 07:40:46\",\n            \"deleted_at\": null,\n            \"topics\": [\n                {\n                    \"id\": 1,\n                    \"uid\": 1,\n                    \"cid\": 2,\n                    \"title\": \"产品反馈\",\n                    \"created_at\": \"2020-04-29 07:39:39\",\n                    \"updated_at\": \"2020-04-29 07:39:39\",\n                    \"deleted_at\": null,\n                    \"pivot\": {\n                        \"pid\": 1,\n                        \"ctid\": 1,\n                        \"created_at\": \"2020-04-29 07:40:46\",\n                        \"updated_at\": \"2020-04-29 07:40:46\"\n                    }\n                },\n                {\n                    \"id\": 2,\n                    \"uid\": 1,\n                    \"cid\": 2,\n                    \"title\": \"点赞\",\n                    \"created_at\": \"2020-04-29 07:40:09\",\n                    \"updated_at\": \"2020-04-29 07:40:09\",\n                    \"deleted_at\": null,\n                    \"pivot\": {\n                        \"pid\": 1,\n                        \"ctid\": 2,\n                        \"created_at\": \"2020-04-29 07:40:46\",\n                        \"updated_at\": \"2020-04-29 07:40:46\"\n                    }\n                }\n            ],\n            \"imgs\": [],\n            \"video\": null,\n            \"user\": {\n                \"id\": 1,\n                \"nickname\": \"\",\n                \"avatar\": \"\",\n                \"sex\": 1\n            },\n            \"circle\": {\n                \"id\": 2,\n                \"name\": \"良品铺子\",\n                \"logo\": \"\"\n            }\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "用户的贴子列表[可以不登录]",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{Host}}/user/1/posts",
+							"host": [
+								"{{Host}}"
+							],
+							"path": [
+								"user",
+								"1",
+								"posts"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "我的贴子列表",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "token",
+										"value": "{{token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{Host}}/user/posts",
+									"host": [
+										"{{Host}}"
+									],
+									"path": [
+										"user",
+										"posts"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Server",
+									"value": "Hyperf"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 28 Apr 2020 23:56:30 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "722"
+								},
+								{
+									"key": "Content-Encoding",
+									"value": "br"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"error_code\": 0,\n    \"msg\": \"ok\",\n    \"data\": [\n        {\n            \"id\": 5,\n            \"uid\": 1,\n            \"cid\": 2,\n            \"title\": \"\",\n            \"link\": \"http://www.baidu.com\",\n            \"gid\": null,\n            \"content\": \"来得全的\",\n            \"summary\": \"来得全的\",\n            \"coordinate\": \"11232103434,1224234234\",\n            \"type\": 0,\n            \"created_at\": \"2020-04-29 07:45:15\",\n            \"updated_at\": \"2020-04-29 07:45:15\",\n            \"deleted_at\": null,\n            \"topics\": [\n                {\n                    \"id\": 1,\n                    \"uid\": 1,\n                    \"cid\": 2,\n                    \"title\": \"产品反馈\",\n                    \"created_at\": \"2020-04-29 07:39:39\",\n                    \"updated_at\": \"2020-04-29 07:39:39\",\n                    \"deleted_at\": null,\n                    \"pivot\": {\n                        \"pid\": 5,\n                        \"ctid\": 1,\n                        \"created_at\": \"2020-04-29 07:45:15\",\n                        \"updated_at\": \"2020-04-29 07:45:15\"\n                    }\n                },\n                {\n                    \"id\": 2,\n                    \"uid\": 1,\n                    \"cid\": 2,\n                    \"title\": \"点赞\",\n                    \"created_at\": \"2020-04-29 07:40:09\",\n                    \"updated_at\": \"2020-04-29 07:40:09\",\n                    \"deleted_at\": null,\n                    \"pivot\": {\n                        \"pid\": 5,\n                        \"ctid\": 2,\n                        \"created_at\": \"2020-04-29 07:45:15\",\n                        \"updated_at\": \"2020-04-29 07:45:15\"\n                    }\n                }\n            ],\n            \"imgs\": [\n                {\n                    \"id\": 7,\n                    \"uid\": 1,\n                    \"pid\": 5,\n                    \"url\": \"http://img.xianglian.group/image/bug.png\",\n                    \"type\": 1,\n                    \"views\": 0,\n                    \"created_at\": \"2020-04-29 07:45:15\",\n                    \"updated_at\": \"2020-04-29 07:45:15\",\n                    \"deleted_at\": null\n                },\n                {\n                    \"id\": 8,\n                    \"uid\": 1,\n                    \"pid\": 5,\n                    \"url\": \"http://img.xianglian.group/image/test.gif\",\n                    \"type\": 1,\n                    \"views\": 0,\n                    \"created_at\": \"2020-04-29 07:45:15\",\n                    \"updated_at\": \"2020-04-29 07:45:15\",\n                    \"deleted_at\": null\n                }\n            ],\n            \"video\": null,\n            \"user\": {\n                \"id\": 1,\n                \"nickname\": \"\",\n                \"avatar\": \"\",\n                \"sex\": 1\n            },\n            \"circle\": {\n                \"id\": 2,\n                \"name\": \"良品铺子\",\n                \"logo\": \"\"\n            }\n        },\n        {\n            \"id\": 4,\n            \"uid\": 1,\n            \"cid\": 2,\n            \"title\": \"\",\n            \"link\": null,\n            \"gid\": null,\n            \"content\": \"来得全的\",\n            \"summary\": \"来得全的\",\n            \"coordinate\": \"11232103434,1224234234\",\n            \"type\": 0,\n            \"created_at\": \"2020-04-29 07:44:28\",\n            \"updated_at\": \"2020-04-29 07:44:28\",\n            \"deleted_at\": null,\n            \"topics\": [\n                {\n                    \"id\": 1,\n                    \"uid\": 1,\n                    \"cid\": 2,\n                    \"title\": \"产品反馈\",\n                    \"created_at\": \"2020-04-29 07:39:39\",\n                    \"updated_at\": \"2020-04-29 07:39:39\",\n                    \"deleted_at\": null,\n                    \"pivot\": {\n                        \"pid\": 4,\n                        \"ctid\": 1,\n                        \"created_at\": \"2020-04-29 07:44:28\",\n                        \"updated_at\": \"2020-04-29 07:44:28\"\n                    }\n                },\n                {\n                    \"id\": 2,\n                    \"uid\": 1,\n                    \"cid\": 2,\n                    \"title\": \"点赞\",\n                    \"created_at\": \"2020-04-29 07:40:09\",\n                    \"updated_at\": \"2020-04-29 07:40:09\",\n                    \"deleted_at\": null,\n                    \"pivot\": {\n                        \"pid\": 4,\n                        \"ctid\": 2,\n                        \"created_at\": \"2020-04-29 07:44:28\",\n                        \"updated_at\": \"2020-04-29 07:44:28\"\n                    }\n                }\n            ],\n            \"imgs\": [\n                {\n                    \"id\": 5,\n                    \"uid\": 1,\n                    \"pid\": 4,\n                    \"url\": \"http://img.xianglian.group/image/bug.png\",\n                    \"type\": 1,\n                    \"views\": 0,\n                    \"created_at\": \"2020-04-29 07:44:28\",\n                    \"updated_at\": \"2020-04-29 07:44:28\",\n                    \"deleted_at\": null\n                },\n                {\n                    \"id\": 6,\n                    \"uid\": 1,\n                    \"pid\": 4,\n                    \"url\": \"http://img.xianglian.group/image/test.gif\",\n                    \"type\": 1,\n                    \"views\": 0,\n                    \"created_at\": \"2020-04-29 07:44:28\",\n                    \"updated_at\": \"2020-04-29 07:44:28\",\n                    \"deleted_at\": null\n                }\n            ],\n            \"video\": null,\n            \"user\": {\n                \"id\": 1,\n                \"nickname\": \"\",\n                \"avatar\": \"\",\n                \"sex\": 1\n            },\n            \"circle\": {\n                \"id\": 2,\n                \"name\": \"良品铺子\",\n                \"logo\": \"\"\n            }\n        },\n        {\n            \"id\": 3,\n            \"uid\": 1,\n            \"cid\": 2,\n            \"title\": \"\",\n            \"link\": null,\n            \"gid\": null,\n            \"content\": \"来得全的\",\n            \"summary\": \"来得全的\",\n            \"coordinate\": \"\",\n            \"type\": 0,\n            \"created_at\": \"2020-04-29 07:43:13\",\n            \"updated_at\": \"2020-04-29 07:43:13\",\n            \"deleted_at\": null,\n            \"topics\": [\n                {\n                    \"id\": 1,\n                    \"uid\": 1,\n                    \"cid\": 2,\n                    \"title\": \"产品反馈\",\n                    \"created_at\": \"2020-04-29 07:39:39\",\n                    \"updated_at\": \"2020-04-29 07:39:39\",\n                    \"deleted_at\": null,\n                    \"pivot\": {\n                        \"pid\": 3,\n                        \"ctid\": 1,\n                        \"created_at\": \"2020-04-29 07:43:13\",\n                        \"updated_at\": \"2020-04-29 07:43:13\"\n                    }\n                },\n                {\n                    \"id\": 2,\n                    \"uid\": 1,\n                    \"cid\": 2,\n                    \"title\": \"点赞\",\n                    \"created_at\": \"2020-04-29 07:40:09\",\n                    \"updated_at\": \"2020-04-29 07:40:09\",\n                    \"deleted_at\": null,\n                    \"pivot\": {\n                        \"pid\": 3,\n                        \"ctid\": 2,\n                        \"created_at\": \"2020-04-29 07:43:13\",\n                        \"updated_at\": \"2020-04-29 07:43:13\"\n                    }\n                }\n            ],\n            \"imgs\": [\n                {\n                    \"id\": 3,\n                    \"uid\": 1,\n                    \"pid\": 3,\n                    \"url\": \"http://img.xianglian.group/image/bug.png\",\n                    \"type\": 1,\n                    \"views\": 0,\n                    \"created_at\": \"2020-04-29 07:43:13\",\n                    \"updated_at\": \"2020-04-29 07:43:13\",\n                    \"deleted_at\": null\n                },\n                {\n                    \"id\": 4,\n                    \"uid\": 1,\n                    \"pid\": 3,\n                    \"url\": \"http://img.xianglian.group/image/test.gif\",\n                    \"type\": 1,\n                    \"views\": 0,\n                    \"created_at\": \"2020-04-29 07:43:13\",\n                    \"updated_at\": \"2020-04-29 07:43:13\",\n                    \"deleted_at\": null\n                }\n            ],\n            \"video\": null,\n            \"user\": {\n                \"id\": 1,\n                \"nickname\": \"\",\n                \"avatar\": \"\",\n                \"sex\": 1\n            },\n            \"circle\": {\n                \"id\": 2,\n                \"name\": \"良品铺子\",\n                \"logo\": \"\"\n            }\n        },\n        {\n            \"id\": 1,\n            \"uid\": 1,\n            \"cid\": 2,\n            \"title\": \"\",\n            \"link\": null,\n            \"gid\": null,\n            \"content\": \"整得话题呢\",\n            \"summary\": \"整得话题呢\",\n            \"coordinate\": \"\",\n            \"type\": 0,\n            \"created_at\": \"2020-04-29 07:40:46\",\n            \"updated_at\": \"2020-04-29 07:40:46\",\n            \"deleted_at\": null,\n            \"topics\": [\n                {\n                    \"id\": 1,\n                    \"uid\": 1,\n                    \"cid\": 2,\n                    \"title\": \"产品反馈\",\n                    \"created_at\": \"2020-04-29 07:39:39\",\n                    \"updated_at\": \"2020-04-29 07:39:39\",\n                    \"deleted_at\": null,\n                    \"pivot\": {\n                        \"pid\": 1,\n                        \"ctid\": 1,\n                        \"created_at\": \"2020-04-29 07:40:46\",\n                        \"updated_at\": \"2020-04-29 07:40:46\"\n                    }\n                },\n                {\n                    \"id\": 2,\n                    \"uid\": 1,\n                    \"cid\": 2,\n                    \"title\": \"点赞\",\n                    \"created_at\": \"2020-04-29 07:40:09\",\n                    \"updated_at\": \"2020-04-29 07:40:09\",\n                    \"deleted_at\": null,\n                    \"pivot\": {\n                        \"pid\": 1,\n                        \"ctid\": 2,\n                        \"created_at\": \"2020-04-29 07:40:46\",\n                        \"updated_at\": \"2020-04-29 07:40:46\"\n                    }\n                }\n            ],\n            \"imgs\": [],\n            \"video\": null,\n            \"user\": {\n                \"id\": 1,\n                \"nickname\": \"\",\n                \"avatar\": \"\",\n                \"sex\": 1\n            },\n            \"circle\": {\n                \"id\": 2,\n                \"name\": \"良品铺子\",\n                \"logo\": \"\"\n            }\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "推荐的贴子列表[可以不登录]",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "token",
+								"type": "text",
+								"value": "{{token}}"
+							}
+						],
+						"url": {
+							"raw": "{{Host}}/post/recommends",
+							"host": [
+								"{{Host}}"
+							],
+							"path": [
+								"post",
+								"recommends"
+							]
+						},
+						"description": "关注的所有用户或圈子发表的"
+					},
+					"response": [
+						{
+							"name": "推荐的贴子列表",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "token",
+										"value": "{{token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{Host}}/post/recommends",
+									"host": [
+										"{{Host}}"
+									],
+									"path": [
+										"post",
+										"recommends"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Server",
+									"value": "Hyperf"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 29 Apr 2020 00:15:31 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "722"
+								},
+								{
+									"key": "Content-Encoding",
+									"value": "br"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"error_code\": 0,\n    \"msg\": \"ok\",\n    \"data\": [\n        {\n            \"id\": 5,\n            \"uid\": 1,\n            \"cid\": 2,\n            \"title\": \"\",\n            \"link\": \"http://www.baidu.com\",\n            \"gid\": null,\n            \"content\": \"来得全的\",\n            \"summary\": \"来得全的\",\n            \"coordinate\": \"11232103434,1224234234\",\n            \"type\": 0,\n            \"created_at\": \"2020-04-29 07:45:15\",\n            \"updated_at\": \"2020-04-29 07:45:15\",\n            \"deleted_at\": null,\n            \"topics\": [\n                {\n                    \"id\": 1,\n                    \"uid\": 1,\n                    \"cid\": 2,\n                    \"title\": \"产品反馈\",\n                    \"created_at\": \"2020-04-29 07:39:39\",\n                    \"updated_at\": \"2020-04-29 07:39:39\",\n                    \"deleted_at\": null,\n                    \"pivot\": {\n                        \"pid\": 5,\n                        \"ctid\": 1,\n                        \"created_at\": \"2020-04-29 07:45:15\",\n                        \"updated_at\": \"2020-04-29 07:45:15\"\n                    }\n                },\n                {\n                    \"id\": 2,\n                    \"uid\": 1,\n                    \"cid\": 2,\n                    \"title\": \"点赞\",\n                    \"created_at\": \"2020-04-29 07:40:09\",\n                    \"updated_at\": \"2020-04-29 07:40:09\",\n                    \"deleted_at\": null,\n                    \"pivot\": {\n                        \"pid\": 5,\n                        \"ctid\": 2,\n                        \"created_at\": \"2020-04-29 07:45:15\",\n                        \"updated_at\": \"2020-04-29 07:45:15\"\n                    }\n                }\n            ],\n            \"imgs\": [\n                {\n                    \"id\": 7,\n                    \"uid\": 1,\n                    \"pid\": 5,\n                    \"url\": \"http://img.xianglian.group/image/bug.png\",\n                    \"type\": 1,\n                    \"views\": 0,\n                    \"created_at\": \"2020-04-29 07:45:15\",\n                    \"updated_at\": \"2020-04-29 07:45:15\",\n                    \"deleted_at\": null\n                },\n                {\n                    \"id\": 8,\n                    \"uid\": 1,\n                    \"pid\": 5,\n                    \"url\": \"http://img.xianglian.group/image/test.gif\",\n                    \"type\": 1,\n                    \"views\": 0,\n                    \"created_at\": \"2020-04-29 07:45:15\",\n                    \"updated_at\": \"2020-04-29 07:45:15\",\n                    \"deleted_at\": null\n                }\n            ],\n            \"video\": null,\n            \"user\": {\n                \"id\": 1,\n                \"nickname\": \"\",\n                \"avatar\": \"\",\n                \"sex\": 1\n            },\n            \"circle\": {\n                \"id\": 2,\n                \"name\": \"良品铺子\",\n                \"logo\": \"\"\n            }\n        },\n        {\n            \"id\": 4,\n            \"uid\": 1,\n            \"cid\": 2,\n            \"title\": \"\",\n            \"link\": null,\n            \"gid\": null,\n            \"content\": \"来得全的\",\n            \"summary\": \"来得全的\",\n            \"coordinate\": \"11232103434,1224234234\",\n            \"type\": 0,\n            \"created_at\": \"2020-04-29 07:44:28\",\n            \"updated_at\": \"2020-04-29 07:44:28\",\n            \"deleted_at\": null,\n            \"topics\": [\n                {\n                    \"id\": 1,\n                    \"uid\": 1,\n                    \"cid\": 2,\n                    \"title\": \"产品反馈\",\n                    \"created_at\": \"2020-04-29 07:39:39\",\n                    \"updated_at\": \"2020-04-29 07:39:39\",\n                    \"deleted_at\": null,\n                    \"pivot\": {\n                        \"pid\": 4,\n                        \"ctid\": 1,\n                        \"created_at\": \"2020-04-29 07:44:28\",\n                        \"updated_at\": \"2020-04-29 07:44:28\"\n                    }\n                },\n                {\n                    \"id\": 2,\n                    \"uid\": 1,\n                    \"cid\": 2,\n                    \"title\": \"点赞\",\n                    \"created_at\": \"2020-04-29 07:40:09\",\n                    \"updated_at\": \"2020-04-29 07:40:09\",\n                    \"deleted_at\": null,\n                    \"pivot\": {\n                        \"pid\": 4,\n                        \"ctid\": 2,\n                        \"created_at\": \"2020-04-29 07:44:28\",\n                        \"updated_at\": \"2020-04-29 07:44:28\"\n                    }\n                }\n            ],\n            \"imgs\": [\n                {\n                    \"id\": 5,\n                    \"uid\": 1,\n                    \"pid\": 4,\n                    \"url\": \"http://img.xianglian.group/image/bug.png\",\n                    \"type\": 1,\n                    \"views\": 0,\n                    \"created_at\": \"2020-04-29 07:44:28\",\n                    \"updated_at\": \"2020-04-29 07:44:28\",\n                    \"deleted_at\": null\n                },\n                {\n                    \"id\": 6,\n                    \"uid\": 1,\n                    \"pid\": 4,\n                    \"url\": \"http://img.xianglian.group/image/test.gif\",\n                    \"type\": 1,\n                    \"views\": 0,\n                    \"created_at\": \"2020-04-29 07:44:28\",\n                    \"updated_at\": \"2020-04-29 07:44:28\",\n                    \"deleted_at\": null\n                }\n            ],\n            \"video\": null,\n            \"user\": {\n                \"id\": 1,\n                \"nickname\": \"\",\n                \"avatar\": \"\",\n                \"sex\": 1\n            },\n            \"circle\": {\n                \"id\": 2,\n                \"name\": \"良品铺子\",\n                \"logo\": \"\"\n            }\n        },\n        {\n            \"id\": 3,\n            \"uid\": 1,\n            \"cid\": 2,\n            \"title\": \"\",\n            \"link\": null,\n            \"gid\": null,\n            \"content\": \"来得全的\",\n            \"summary\": \"来得全的\",\n            \"coordinate\": \"\",\n            \"type\": 0,\n            \"created_at\": \"2020-04-29 07:43:13\",\n            \"updated_at\": \"2020-04-29 07:43:13\",\n            \"deleted_at\": null,\n            \"topics\": [\n                {\n                    \"id\": 1,\n                    \"uid\": 1,\n                    \"cid\": 2,\n                    \"title\": \"产品反馈\",\n                    \"created_at\": \"2020-04-29 07:39:39\",\n                    \"updated_at\": \"2020-04-29 07:39:39\",\n                    \"deleted_at\": null,\n                    \"pivot\": {\n                        \"pid\": 3,\n                        \"ctid\": 1,\n                        \"created_at\": \"2020-04-29 07:43:13\",\n                        \"updated_at\": \"2020-04-29 07:43:13\"\n                    }\n                },\n                {\n                    \"id\": 2,\n                    \"uid\": 1,\n                    \"cid\": 2,\n                    \"title\": \"点赞\",\n                    \"created_at\": \"2020-04-29 07:40:09\",\n                    \"updated_at\": \"2020-04-29 07:40:09\",\n                    \"deleted_at\": null,\n                    \"pivot\": {\n                        \"pid\": 3,\n                        \"ctid\": 2,\n                        \"created_at\": \"2020-04-29 07:43:13\",\n                        \"updated_at\": \"2020-04-29 07:43:13\"\n                    }\n                }\n            ],\n            \"imgs\": [\n                {\n                    \"id\": 3,\n                    \"uid\": 1,\n                    \"pid\": 3,\n                    \"url\": \"http://img.xianglian.group/image/bug.png\",\n                    \"type\": 1,\n                    \"views\": 0,\n                    \"created_at\": \"2020-04-29 07:43:13\",\n                    \"updated_at\": \"2020-04-29 07:43:13\",\n                    \"deleted_at\": null\n                },\n                {\n                    \"id\": 4,\n                    \"uid\": 1,\n                    \"pid\": 3,\n                    \"url\": \"http://img.xianglian.group/image/test.gif\",\n                    \"type\": 1,\n                    \"views\": 0,\n                    \"created_at\": \"2020-04-29 07:43:13\",\n                    \"updated_at\": \"2020-04-29 07:43:13\",\n                    \"deleted_at\": null\n                }\n            ],\n            \"video\": null,\n            \"user\": {\n                \"id\": 1,\n                \"nickname\": \"\",\n                \"avatar\": \"\",\n                \"sex\": 1\n            },\n            \"circle\": {\n                \"id\": 2,\n                \"name\": \"良品铺子\",\n                \"logo\": \"\"\n            }\n        },\n        {\n            \"id\": 1,\n            \"uid\": 1,\n            \"cid\": 2,\n            \"title\": \"\",\n            \"link\": null,\n            \"gid\": null,\n            \"content\": \"整得话题呢\",\n            \"summary\": \"整得话题呢\",\n            \"coordinate\": \"\",\n            \"type\": 0,\n            \"created_at\": \"2020-04-29 07:40:46\",\n            \"updated_at\": \"2020-04-29 07:40:46\",\n            \"deleted_at\": null,\n            \"topics\": [\n                {\n                    \"id\": 1,\n                    \"uid\": 1,\n                    \"cid\": 2,\n                    \"title\": \"产品反馈\",\n                    \"created_at\": \"2020-04-29 07:39:39\",\n                    \"updated_at\": \"2020-04-29 07:39:39\",\n                    \"deleted_at\": null,\n                    \"pivot\": {\n                        \"pid\": 1,\n                        \"ctid\": 1,\n                        \"created_at\": \"2020-04-29 07:40:46\",\n                        \"updated_at\": \"2020-04-29 07:40:46\"\n                    }\n                },\n                {\n                    \"id\": 2,\n                    \"uid\": 1,\n                    \"cid\": 2,\n                    \"title\": \"点赞\",\n                    \"created_at\": \"2020-04-29 07:40:09\",\n                    \"updated_at\": \"2020-04-29 07:40:09\",\n                    \"deleted_at\": null,\n                    \"pivot\": {\n                        \"pid\": 1,\n                        \"ctid\": 2,\n                        \"created_at\": \"2020-04-29 07:40:46\",\n                        \"updated_at\": \"2020-04-29 07:40:46\"\n                    }\n                }\n            ],\n            \"imgs\": [],\n            \"video\": null,\n            \"user\": {\n                \"id\": 1,\n                \"nickname\": \"\",\n                \"avatar\": \"\",\n                \"sex\": 1\n            },\n            \"circle\": {\n                \"id\": 2,\n                \"name\": \"良品铺子\",\n                \"logo\": \"\"\n            }\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "贴子详情[可以不登录]",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "token",
+								"value": "{{token}}",
+								"description": "可以不登录",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{Host}}/post/1/info",
+							"host": [
+								"{{Host}}"
+							],
+							"path": [
+								"post",
+								"1",
+								"info"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "评论",
+			"item": [
+				{
+					"name": "发表评论",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "token",
+								"value": "{{token}}",
+								"description": "token",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "pid",
+									"value": "1",
+									"description": "贴子ID",
+									"type": "text"
+								},
+								{
+									"key": "pcid",
+									"value": "1",
+									"description": "回复的评论ID,可以为空",
+									"type": "text"
+								},
+								{
+									"key": "content",
+									"value": "回复,第一条评论",
+									"description": "评论内容",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{Host}}/comment/create",
+							"host": [
+								"{{Host}}"
+							],
+							"path": [
+								"comment",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "删除评论",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{Host}}/comment/5/delete",
+							"host": [
+								"{{Host}}"
+							],
+							"path": [
+								"comment",
+								"5",
+								"delete"
+							]
+						},
+						"description": "只有自己,贴子所有者,圈子管理员能删除评论"
+					},
+					"response": []
+				},
+				{
+					"name": "贴子的评论列表",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{Host}}/post/1/comments",
+							"host": [
+								"{{Host}}"
+							],
+							"path": [
+								"post",
+								"1",
+								"comments"
+							]
+						},
+						"description": "某个贴子的一级评论列表,不包含回复的"
+					},
+					"response": [
+						{
+							"name": "贴子评论列表",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{Host}}/post/1/comments",
+									"host": [
+										"{{Host}}"
+									],
+									"path": [
+										"post",
+										"1",
+										"comments"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Server",
+									"value": "Hyperf"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 08 May 2020 06:28:52 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "275"
+								},
+								{
+									"key": "Content-Encoding",
+									"value": "br"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"error_code\": 0,\n    \"msg\": \"ok\",\n    \"data\": [\n        {\n            \"id\": 4,\n            \"uid\": 1,\n            \"pid\": 1,\n            \"pcid\": 0,\n            \"cid\": 1,\n            \"to_uid\": 3,\n            \"content\": \"我就随便一说,这就有十五个字.\",\n            \"created_at\": \"2020-05-08 13:53:08\",\n            \"updated_at\": \"2020-05-08 13:53:08\",\n            \"deleted_at\": null,\n            \"form_user\": {\n                \"id\": 1,\n                \"nickname\": \"\",\n                \"avatar\": \"\",\n                \"sex\": 1\n            }\n        },\n        {\n            \"id\": 1,\n            \"uid\": 1,\n            \"pid\": 1,\n            \"pcid\": 0,\n            \"cid\": 1,\n            \"to_uid\": 3,\n            \"content\": \"我就随便一说,这就有十五个字.\",\n            \"created_at\": \"2020-05-08 13:52:31\",\n            \"updated_at\": \"2020-05-08 13:52:31\",\n            \"deleted_at\": null,\n            \"form_user\": {\n                \"id\": 1,\n                \"nickname\": \"\",\n                \"avatar\": \"\",\n                \"sex\": 1\n            }\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "评论的回复列表",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{Host}}/comment/1/replys",
+							"host": [
+								"{{Host}}"
+							],
+							"path": [
+								"comment",
+								"1",
+								"replys"
+							]
+						},
+						"description": "某一条评论下的回复列表"
+					},
+					"response": [
+						{
+							"name": "评论的回复列表",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{Host}}/comment/1/replys",
+									"host": [
+										"{{Host}}"
+									],
+									"path": [
+										"comment",
+										"1",
+										"replys"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Server",
+									"value": "Hyperf"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 08 May 2020 06:31:46 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "254"
+								},
+								{
+									"key": "Content-Encoding",
+									"value": "br"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"error_code\": 0,\n    \"msg\": \"ok\",\n    \"data\": [\n        {\n            \"id\": 6,\n            \"uid\": 1,\n            \"pid\": 1,\n            \"pcid\": 1,\n            \"cid\": 1,\n            \"to_uid\": 1,\n            \"content\": \"我就随便一说,这就有十五个字.\",\n            \"created_at\": \"2020-05-08 13:54:57\",\n            \"updated_at\": \"2020-05-08 13:54:57\",\n            \"deleted_at\": null,\n            \"form_user\": {\n                \"id\": 1,\n                \"nickname\": \"\",\n                \"avatar\": \"\",\n                \"sex\": 1\n            },\n            \"to_user\": {\n                \"id\": 1,\n                \"nickname\": \"\",\n                \"avatar\": \"\",\n                \"sex\": 1\n            }\n        }\n    ]\n}"
+						}
+					]
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "点赞",
+			"item": [
+				{
+					"name": "取消点赞",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "pid",
+									"value": "1",
+									"description": "贴子ID",
+									"type": "text"
+								},
+								{
+									"key": "pcid",
+									"value": "1",
+									"description": "评论ID,pid和pcid二选一",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{Host}}/vote/cancel",
+							"host": [
+								"{{Host}}"
+							],
+							"path": [
+								"vote",
+								"cancel"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "点赞",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "pid",
+									"value": "5",
+									"description": "贴子ID",
+									"type": "text"
+								},
+								{
+									"key": "pcid",
+									"value": "1",
+									"description": "评论ID,pid和pcid二选一",
+									"type": "text"
+								},
+								{
+									"key": "result",
+									"value": "0",
+									"description": "1:赞成,0:反对,默认为1",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{Host}}/vote/post",
+							"host": [
+								"{{Host}}"
+							],
+							"path": [
+								"vote",
+								"post"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "采纳",
+			"item": [
+				{
+					"name": "采纳贴子",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "pid",
+									"value": "2",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{Host}}/adopt/post",
+							"host": [
+								"{{Host}}"
+							],
+							"path": [
+								"adopt",
+								"post"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "用户采纳贴子",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "pid",
+									"value": "2",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{Host}}/adopt/1/posts",
+							"host": [
+								"{{Host}}"
+							],
+							"path": [
+								"adopt",
+								"1",
+								"posts"
+							]
+						},
+						"description": "url上的{id}为用户ID"
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "用户",
+			"item": [
+				{
+					"name": "获取用户信息[NotAuth]",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "token",
+								"type": "text",
+								"value": "{{token}}"
+							}
+						],
+						"url": {
+							"raw": "{{Host}}/user/1/info",
+							"host": [
+								"{{Host}}"
+							],
+							"path": [
+								"user",
+								"1",
+								"info"
+							]
+						},
+						"description": "{{Host}}/user/info"
+					},
+					"response": [
+						{
+							"name": "成功",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "token",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhaWQiOjEsImV4cCI6MTU4NzkwOTQ2NSwiamlkIjoiMzQyNWJlMDFjM2MyMWU5YmNmODE0NjFiYzdlMjllM2YifQ.wN4CxppCiK6j-74JnN4Q017KTd2fswx0ewvY9BQ0vGI",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{Host}}/user/info",
+									"host": [
+										"{{Host}}"
+									],
+									"path": [
+										"user",
+										"info"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.16.1"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 23 Apr 2020 14:04:28 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "254"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"error_code\": 0,\n    \"msg\": \"success.\",\n    \"data\": {\n        \"id\": 1,\n        \"phone\": \"15313254552\",\n        \"nickname\": \"阿金\",\n        \"sex\": 1,\n        \"avatar\": \"\",\n        \"signature\": \"没人个性\",\n        \"status\": 1,\n        \"last_login\": \"2020-04-23 22:01:06\",\n        \"created_at\": \"2020-04-23 21:57:45\",\n        \"updated_at\": \"2020-04-23 22:01:06\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "手机号登录/注册",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "97632ac3-e616-4758-8351-54f54a113a84",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "5eecba77-fa82-456c-bd21-94aecca90a6e",
+								"exec": [
+									"var response = pm.response.json();",
+									"var {data} = response || {};",
+									"var {token} = data || {}; ",
+									"if(token){",
+									"    pm.environment.set(\"token\", token);",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "phone",
+									"value": "13161239405",
+									"description": "手机号",
+									"type": "text"
+								},
+								{
+									"key": "code",
+									"value": "1947",
+									"description": "验证码",
+									"type": "text"
+								}
+							],
+							"options": {
+								"formdata": {}
+							}
+						},
+						"url": {
+							"raw": "{{Host}}/user/login",
+							"host": [
+								"{{Host}}"
+							],
+							"path": [
+								"user",
+								"login"
+							]
+						},
+						"description": "{{Host}}/user/login"
+					},
+					"response": [
+						{
+							"name": "失败",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "phone",
+											"value": "15313254552",
+											"description": "手机号",
+											"type": "text"
+										},
+										{
+											"key": "code",
+											"value": "1947",
+											"description": "验证码",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{Host}}/user/login",
+									"host": [
+										"{{Host}}"
+									],
+									"path": [
+										"user",
+										"login"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.16.1"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 23 Apr 2020 14:04:00 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "71"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"error_code\": 11002,\n    \"msg\": \"验证码不正确.\",\n    \"data\": null,\n    \"trace\": \"\"\n}"
+						},
+						{
+							"name": "成功",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "phone",
+											"value": "15313254552",
+											"description": "手机号",
+											"type": "text"
+										},
+										{
+											"key": "code",
+											"value": "1947",
+											"description": "验证码",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{Host}}/user/login",
+									"host": [
+										"{{Host}}"
+									],
+									"path": [
+										"user",
+										"login"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.16.1"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 23 Apr 2020 14:03:21 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "286"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"error_code\": 0,\n    \"msg\": \"登录成功.\",\n    \"data\": {\n        \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhaWQiOjEsImV4cCI6MTU4NzkwOTgwMSwiamlkIjoiNDAxZGM2MDAzZGUzMDBhODU4Yzg2ZTMzYmQxMTU1N2EifQ.KGfnwmzITE4c-JYs1KLu37ZcIxH-9SSJjgiIhhE0hmI\",\n        \"expire_time\": 1587909801,\n        \"nickname\": \"阿金\",\n        \"avatar\": \"\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "修改用户信息",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "nickname",
+									"value": "阿木",
+									"description": "昵称",
+									"type": "text"
+								},
+								{
+									"key": "signature",
+									"value": "签个屁",
+									"description": "个性签名",
+									"type": "text"
+								},
+								{
+									"key": "sex",
+									"value": "1",
+									"description": "性别,1:男,0:女",
+									"type": "text"
+								},
+								{
+									"key": "avatar",
+									"value": "https://upload.jianshu.io/users/upload_avatars/1498713/62343da76be4?imageMogr2/auto-orient/strip|imageView2/1/w/240/h/240",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "file[]",
+									"value": "",
+									"type": "file",
+									"disabled": true
+								}
+							],
+							"options": {
+								"formdata": {}
+							}
+						},
+						"url": {
+							"raw": "{{Host}}/user/update",
+							"host": [
+								"{{Host}}"
+							],
+							"path": [
+								"user",
+								"update"
+							]
+						},
+						"description": "{{Host}}/user/update\n\n只能修改,昵称,签名,和性别"
+					},
+					"response": [
+						{
+							"name": "成功",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "token",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhaWQiOjEsImV4cCI6MTU4NzkwOTQ2NSwiamlkIjoiMzQyNWJlMDFjM2MyMWU5YmNmODE0NjFiYzdlMjllM2YifQ.wN4CxppCiK6j-74JnN4Q017KTd2fswx0ewvY9BQ0vGI",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "nickname",
+											"value": "阿金",
+											"description": "昵称",
+											"type": "text"
+										},
+										{
+											"key": "signature",
+											"value": "没人个性",
+											"description": "个性签名",
+											"type": "text"
+										},
+										{
+											"key": "sex",
+											"value": "1",
+											"description": "性别,1:男,0:女",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{Host}}/user/update",
+									"host": [
+										"{{Host}}"
+									],
+									"path": [
+										"user",
+										"update"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.16.1"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 23 Apr 2020 14:04:50 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "254"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"error_code\": 0,\n    \"msg\": \"success.\",\n    \"data\": {\n        \"id\": 1,\n        \"phone\": \"15313254552\",\n        \"nickname\": \"阿金\",\n        \"sex\": 1,\n        \"avatar\": \"\",\n        \"signature\": \"没人个性\",\n        \"status\": 1,\n        \"last_login\": \"2020-04-23 22:01:06\",\n        \"created_at\": \"2020-04-23 21:57:45\",\n        \"updated_at\": \"2020-04-23 22:01:06\"\n    }\n}"
+						}
+					]
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "消息通知",
+			"item": [],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"protocolProfileBehavior": {}
+}
