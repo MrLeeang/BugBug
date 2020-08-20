@@ -11,6 +11,8 @@ func MakeRouter(r *gin.Engine) {
 	r.GET("/v1/user/:userId/info", views.ActionUserInfo)
 	// 用户登录
 	r.POST("/v1/user/login", views.ActionUserLogin)
+	//
+	r.GET("/v1/user/")
 	// 修改用户信息
 	r.PUT("/v1/user/update", views.AuthHandler(), views.ActionUpdateUserInfo)
 	// 关注

@@ -2,7 +2,9 @@ package views
 
 import (
 	"BugBug/service"
+	"BugBug/utils"
 	"github.com/gin-gonic/gin"
+	"time"
 )
 
 // ActionUserInfo 用户信息
@@ -30,9 +32,39 @@ func ActionUserInfo(c *gin.Context) {
 func ActionUserLogin(c *gin.Context) {
 	// 定义返回值
 	var ret = map[string]interface{}{}
-
+	phone := c.Query("phone")
+	code := c.Query("code")
+	// 验证验证码
+	verifyRet := service.VerifyLoginCode(phone, code)
+	if verifyRet == false {
+		//c.JSON(200, gin.H{
+		//	"error_code": 11002,
+		//	"msg": "验证码不正确",
+		//})
+		//return
+	}
+	// 获取用户信息
+	userInfo := service.GetUserByPhone(phone)
+	if userInfo["id"] == nil {
+		c.JSON(200, gin.H{
+			"error_code": 11002,
+			"msg":        "用户不存在",
+		})
+		return
+	}
+	uid := userInfo["id"]
+	// 生成token
+	tokenStr := service.GenerateToken(uid)
+	utils.UtilsLogger.Info(tokenStr)
+	ret["token"] = tokenStr
+	ret["nickname"] = userInfo["nickname"]
+	ret["expire_time"] = int64(time.Now().Add(time.Hour * 72).Unix())
+	ret["avatar"] = userInfo["avatar"]
+	ret["uid"] = userInfo["id"]
 	c.JSON(200, gin.H{
-		"ret": ret,
+		"error_code": 0,
+		"msg":        "登录成功",
+		"data":       ret,
 	})
 }
 
