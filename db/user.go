@@ -6,6 +6,26 @@ import (
 	"fmt"
 )
 
+// orm 文档
+//https://www.kancloud.cn/xormplus/xorm/167111
+
+// 连表
+//type UserGroup struct {
+//	models.FbUsers `xorm:"extends"`
+//	Name string
+//}
+//
+//func (UserGroup) TableName() string {
+//	return "user"
+//}
+//
+//var allUsers = make([]UserGroup, 0)
+//_ = Engine.SQL("select user.*, group.name from user, group where user.group_id = group.id").Find(&allUsers)
+
+//engine.Table("user").Join("INNER", "group", "group.id = user.group_id").
+//Join("INNER", "type", "type.id = user.type_id").
+//Where("user.name like ?", "%"+name+"%").Find(&users, &User{Name:name})
+
 // QueryUsers 查询所有用户
 func QueryUsers() []models.FbUsers {
 	// 定义一个数组存放结构体
