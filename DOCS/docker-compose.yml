@@ -1,0 +1,25 @@
+version: '2'
+
+services:
+  db:
+    image: mariadb
+    restart: always
+    container_name: mariadb
+    ports:
+      - 3306:3306
+    volumes:
+      - /data/mariadb/data:/var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=bugbug@2020
+    command: --transaction-isolation=READ-COMMITTED --binlog-format=ROW --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+
+  redis:
+    image: redis
+    restart: always
+    container_name: redis
+    ports:
+      - 6379:6379
+    volumes:
+      - /data/redis/redis.conf:/etc/redis/redis.conf
+      - /data/redis/data:/data
+    command: redis-server /etc/redis/redis.conf --appendonly yes

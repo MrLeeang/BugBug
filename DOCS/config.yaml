@@ -1,0 +1,42 @@
+captcha:
+  key-long: 6
+  img-width: 240
+  img-height: 80
+casbin:
+  model-path: ./resource/rbac_model.conf
+jwt:
+  signing-key: qmPlus
+log:
+  prefix: '[GIN-VUE-ADMIN]'
+  log-file: false
+  stdout: DEBUG
+  file: DEBUG
+mysql:
+  username: gaoxin
+  password: gaoxin0612
+  path: localhost:3306
+  db-name: feedback
+  config: charset=utf8&parseTime=True&loc=Local
+  max-idle-conns: 5
+  max-open-conns: 10
+  log-mode: false
+qiniu:
+  access-key: 25j8dYBZ2wuiy0yhwShytjZDTX662b8xiFguwxzZ
+  secret-key: pgdbqEsf7ooZh7W3xokP833h3dZ_VecFXPDeG5JY
+  bucket: qm-plus-img
+  img-path: http://qmplusimg.henrongyi.top
+redis:
+  addr: 127.0.0.1:6379
+  password: ""
+  db: 0
+sqlite:
+  username: ""
+  password: ""
+  path: db.db
+  config: loc=Asia/Shanghai
+  log-mode: true
+system:
+  use-multipoint: false
+  env: public
+  addr: 8888
+  db-type: mysql
