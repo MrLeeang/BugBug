@@ -2,7 +2,6 @@ package views
 
 import (
 	"BugBug/service"
-	"BugBug/utils"
 	"github.com/gin-gonic/gin"
 	"time"
 )
@@ -55,7 +54,6 @@ func ActionUserLogin(c *gin.Context) {
 	uid := userInfo["id"]
 	// 生成token
 	tokenStr := service.GenerateToken(uid)
-	utils.UtilsLogger.Info(tokenStr)
 	ret["token"] = tokenStr
 	ret["nickname"] = userInfo["nickname"]
 	ret["expire_time"] = int64(time.Now().Add(time.Hour * 72).Unix())
