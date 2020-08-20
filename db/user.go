@@ -6,6 +6,20 @@ import (
 	"fmt"
 )
 
+// QueryUsers 查询所有用户
+func QueryUsers() []models.FbUsers {
+	// 定义一个数组存放结构体
+	// allUsers := []*models.UserModel{}
+	var allUsers []models.FbUsers
+	// 查询
+	var err = Engine.Find(&allUsers)
+
+	if err != nil {
+		utils.UtilsLogger.Error(err)
+	}
+
+	return allUsers
+}
 func DetailUsers(key string, value string) []models.FbUsers {
 	// 定义一个数组存放结构体
 	var UserList []models.FbUsers

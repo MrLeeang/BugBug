@@ -2,6 +2,8 @@ package service
 
 import (
 	"BugBug/db"
+	"BugBug/models"
+	"BugBug/utils"
 	"encoding/json"
 	"fmt"
 	"github.com/dgrijalva/jwt-go"
@@ -11,7 +13,18 @@ import (
 	"strings"
 	"time"
 )
-import "BugBug/utils"
+
+func GetUsers() []models.FbUsers {
+	return db.QueryUsers()
+}
+
+func GetUserByPhoneToModel(email string) models.FbUsers {
+	userModels := db.DetailUsers("email", email)
+	if len(userModels) == 0 {
+		return models.FbUsers{}
+	}
+	return userModels[0]
+}
 
 func GetUserById(userId string) map[string]interface{} {
 
