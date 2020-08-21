@@ -40,6 +40,8 @@ func QueryUsers() []models.FbUsers {
 
 	return allUsers
 }
+
+// DetailUsers 查询
 func DetailUsers(key string, value string) []models.FbUsers {
 	// 定义一个数组存放结构体
 	var UserList []models.FbUsers
@@ -54,6 +56,7 @@ func DetailUsers(key string, value string) []models.FbUsers {
 	return UserList
 }
 
+// GetUserById 获取用户
 func GetUserById(id string) models.FbUsers {
 	// 定义一个结构体
 	var User models.FbUsers
@@ -65,4 +68,20 @@ func GetUserById(id string) models.FbUsers {
 	}
 
 	return User
+}
+
+// UpdateUserInfoByID 更新用户信息
+func UpdateUserInfoByID(id int64, nickname string, signature string, sex int, avatar string) (bool, models.FbUsers) {
+	user := &models.FbUsers{}
+	user.Nickname = nickname
+	user.Signature = signature
+	user.Sex = sex
+	user.Avatar = avatar
+	affected, err := Engine.ID(id).Update(user)
+	if err != nil {
+		utils.UtilsLogger.Error(err)
+		return false, *user
+	}
+	utils.UtilsLogger.Info(affected)
+	return true, *user
 }

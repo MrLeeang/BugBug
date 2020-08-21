@@ -6,18 +6,26 @@ import (
 	"BugBug/utils"
 	"encoding/json"
 	"fmt"
-	"github.com/dgrijalva/jwt-go"
 	"io/ioutil"
 	"net/http"
 	"net/http/cookiejar"
 	"strings"
 	"time"
+
+	"github.com/dgrijalva/jwt-go"
 )
 
+// UpdateUserInfoByID 更新用户信息
+func UpdateUserInfoByID(id int64, nickname string, signature string, sex int, avatar string) (bool, models.FbUsers) {
+	return db.UpdateUserInfoByID(id, nickname, signature, sex, avatar)
+}
+
+// GetUsers 获取用户列表
 func GetUsers() []models.FbUsers {
 	return db.QueryUsers()
 }
 
+// GetUserByPhoneToModel 获取用户信息model
 func GetUserByPhoneToModel(email string) models.FbUsers {
 	userModels := db.DetailUsers("email", email)
 	if len(userModels) == 0 {
@@ -26,11 +34,12 @@ func GetUserByPhoneToModel(email string) models.FbUsers {
 	return userModels[0]
 }
 
-func GetUserById(userId string) map[string]interface{} {
+// GetUserByID 根据id获取用户信息
+func GetUserByID(userID string) map[string]interface{} {
 
 	var ret = map[string]interface{}{}
 
-	sqlStr := fmt.Sprintf("select * from fb_users where id='%s' limit 1;", userId)
+	sqlStr := fmt.Sprintf("select * from fb_users where id='%s' limit 1;", userID)
 	queryResult, err := db.Engine.QueryString(sqlStr)
 	if err != nil {
 		utils.UtilsLogger.Error(err)
@@ -55,6 +64,7 @@ func GetUserById(userId string) map[string]interface{} {
 	return ret
 }
 
+// GetUserByPhone 根据手机号获取用户信息
 func GetUserByPhone(phone string) map[string]interface{} {
 
 	var ret = map[string]interface{}{}
@@ -84,9 +94,10 @@ func GetUserByPhone(phone string) map[string]interface{} {
 	return ret
 }
 
+// VerifyLoginCode 验证码验证
 func VerifyLoginCode(phone string, code string) bool {
 	// 短信服务请求地址
-	verifyUri := "http://webapi.sms.mob.com/sms/verify"
+	verifyURI := "http://webapi.sms.mob.com/sms/verify"
 	// app key
 	appKey := "2eca699e046f4"
 	// 申明并创建一个cookie
@@ -113,7 +124,7 @@ func VerifyLoginCode(phone string, code string) bool {
 	//httpResp, err := httpClient.Do(httpReq)
 	// 请求
 	httpResp, err := httpClient.Post(
-		verifyUri,
+		verifyURI,
 		"application/x-www-form-urlencoded",
 		strings.NewReader(bodyStr),
 	)
@@ -126,7 +137,7 @@ func VerifyLoginCode(phone string, code string) bool {
 	// 获取返回值
 	body, _ := ioutil.ReadAll(httpResp.Body)
 	// json转成map
-	var ret map[string]interface{}
+	ret := map[string]interface{}{}
 	err = json.Unmarshal(body, &ret)
 	if err != nil {
 		utils.UtilsLogger.Error(err.Error())
@@ -151,17 +162,17 @@ type jwtCustomClaims struct {
 	jwt.StandardClaims
 
 	// 追加自己需要的信息
-	Uid interface{}
+	UID interface{} // 用户id
 }
 
 // GenerateToken 生成token
-func GenerateToken(Uid interface{}) string {
+func GenerateToken(uid interface{}) string {
 	claims := &jwtCustomClaims{
 		jwt.StandardClaims{
 			ExpiresAt: int64(time.Now().Add(time.Hour * 72).Unix()),
 			Issuer:    Issuer,
 		},
-		Uid,
+		uid,
 	}
 	token := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
 	tokenString, err := token.SignedString([]byte(SecretKey))
@@ -173,7 +184,7 @@ func GenerateToken(Uid interface{}) string {
 }
 
 // VerifyToken 验证token
-func VerifyToken(tokenSrt string) jwt.Claims {
+func VerifyToken(tokenSrt string) jwt.MapClaims {
 	//var verifyToken *jwt.Token
 	verifyToken, err := jwt.Parse(tokenSrt, func(*jwt.Token) (interface{}, error) {
 		return []byte(SecretKey), nil
@@ -181,6 +192,6 @@ func VerifyToken(tokenSrt string) jwt.Claims {
 	if err != nil {
 		return nil
 	}
-	claims := verifyToken.Claims
-	return claims
+
+	return verifyToken.Claims.(jwt.MapClaims)
 }

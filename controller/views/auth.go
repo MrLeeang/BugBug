@@ -7,12 +7,13 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+// AuthHandler 登录验证
 func AuthHandler() gin.HandlerFunc {
 	return func(context *gin.Context) {
 		tokenStr := context.Request.Header.Get("token")
 		verify := service.VerifyToken(tokenStr)
-		utils.UtilsLogger.Info(verify)
 		if verify == nil {
+			utils.UtilsLogger.Error(verify)
 			var ret = map[string]interface{}{}
 			retCode := utils.RetCode.LoginError
 			ret["code"] = retCode
@@ -23,6 +24,12 @@ func AuthHandler() gin.HandlerFunc {
 			context.Abort()
 			return
 		}
+		// gin上下文存储context.Keys，verifyMap报存到上下文中
+		verifyMap := map[string]interface{}{}
+		for key, val := range verify {
+			verifyMap[key] = val
+		}
+		context.Keys = verifyMap
 		context.Next()
 	}
 }

@@ -7,9 +7,10 @@ import (
 	"strconv"
 )
 
-func CountAdoptByUserId(userId string) int {
+// CountAdoptByUserID 采纳数
+func CountAdoptByUserID(userID string) int {
 
-	queryStr := fmt.Sprintf("select count(id) from fb_adopts where uid='%s';", userId)
+	queryStr := fmt.Sprintf("select count(id) from fb_adopts where uid='%s';", userID)
 	queryResult, err := db.Engine.QueryString(queryStr)
 	if err != nil {
 		utils.UtilsLogger.Error(err)

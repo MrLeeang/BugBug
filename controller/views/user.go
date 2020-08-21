@@ -2,6 +2,7 @@ package views
 
 import (
 	"BugBug/service"
+	"fmt"
 	"time"
 
 	"github.com/gin-gonic/gin"
@@ -10,15 +11,15 @@ import (
 // ActionUserInfo 用户信息
 func ActionUserInfo(c *gin.Context) {
 
-	userId := c.Param("userId")
+	userID := c.Param("userId")
 
 	// 用户信息
-	userInfo := service.GetUserById(userId)
+	userInfo := service.GetUserByID(userID)
 	if userInfo["id"] != nil {
 		// 点赞数量
-		userInfo["vote_count"] = service.CountVoteByUserId(userId)
+		userInfo["vote_count"] = service.CountVoteByUserID(userID)
 		// 采纳数量
-		userInfo["adopt_count"] = service.CountAdoptByUserId(userId)
+		userInfo["adopt_count"] = service.CountAdoptByUserID(userID)
 	}
 
 	c.JSON(200, gin.H{
@@ -28,7 +29,7 @@ func ActionUserInfo(c *gin.Context) {
 	})
 }
 
-// ActionUserInfo 用户列表
+// ActionUserList 用户列表
 func ActionUserList(c *gin.Context) {
 
 	// 用户信息
@@ -45,8 +46,8 @@ func ActionUserList(c *gin.Context) {
 func ActionUserLogin(c *gin.Context) {
 	// 定义返回值
 	var ret = map[string]interface{}{}
-	phone := c.Query("phone")
-	code := c.Query("code")
+	phone := c.PostForm("phone")
+	code := c.PostForm("code")
 	// 验证验证码
 	verifyRet := service.VerifyLoginCode(phone, code)
 	if verifyRet == false {
@@ -65,9 +66,8 @@ func ActionUserLogin(c *gin.Context) {
 		})
 		return
 	}
-	uid := userInfo["id"]
-	// 生成token
-	tokenStr := service.GenerateToken(uid)
+
+	tokenStr := service.GenerateToken(userInfo["id"])
 	ret["token"] = tokenStr
 	ret["nickname"] = userInfo["nickname"]
 	ret["expire_time"] = int64(time.Now().Add(time.Hour * 72).Unix())
@@ -84,6 +84,23 @@ func ActionUserLogin(c *gin.Context) {
 func ActionUpdateUserInfo(c *gin.Context) {
 	// 定义返回值
 	var ret = map[string]interface{}{}
+	// // 昵称
+	// nickName := c.PostForm("nickname")
+	// // 签名
+	// signature := c.PostForm("signature")
+	// // 性别
+	// sex := c.PostForm("sex")
+	// // 头像
+	// avatar := c.PostForm("avatar")
+
+	// sexInt, _ := strconv.Atoi(sex)
+	// uid, _ := userInfo["id"].(string)
+	// uidInt64, _ := strconv.ParseInt(uid, 10, 64)
+	// 生成token
+	UID := c.Keys["UID"]
+	fmt.Println(UID)
+	fmt.Printf("%T", UID)
+	// service.UpdateUserInfoByID(UID, nickName, signature, sexInt, avatar)
 
 	c.JSON(200, gin.H{
 		"ret": ret,

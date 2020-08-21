@@ -7,9 +7,10 @@ import (
 	"strconv"
 )
 
-func CountVoteByUserId(userId string) int {
+// CountVoteByUserID 统计点赞数
+func CountVoteByUserID(userID string) int {
 
-	queryStr := fmt.Sprintf("select count(id) from fb_votes where uid='%s';", userId)
+	queryStr := fmt.Sprintf("select count(id) from fb_votes where uid='%s';", userID)
 	queryResult, err := db.Engine.QueryString(queryStr)
 	if err != nil {
 		utils.UtilsLogger.Error(err)
