@@ -2,7 +2,7 @@ package views
 
 import (
 	"BugBug/service"
-	"fmt"
+	"strconv"
 	"time"
 
 	"github.com/gin-gonic/gin"
@@ -82,28 +82,32 @@ func ActionUserLogin(c *gin.Context) {
 
 // ActionUpdateUserInfo 更新用户信息
 func ActionUpdateUserInfo(c *gin.Context) {
-	// 定义返回值
-	var ret = map[string]interface{}{}
-	// // 昵称
-	// nickName := c.PostForm("nickname")
-	// // 签名
-	// signature := c.PostForm("signature")
-	// // 性别
-	// sex := c.PostForm("sex")
-	// // 头像
-	// avatar := c.PostForm("avatar")
+	// 昵称
+	nickName := c.PostForm("nickname")
+	// 签名
+	signature := c.PostForm("signature")
+	// 性别
+	sex := c.PostForm("sex")
+	// 头像
+	avatar := c.PostForm("avatar")
 
-	// sexInt, _ := strconv.Atoi(sex)
+	sexInt, _ := strconv.Atoi(sex)
 	// uid, _ := userInfo["id"].(string)
 	// uidInt64, _ := strconv.ParseInt(uid, 10, 64)
 	// 生成token
-	UID := c.Keys["UID"]
-	fmt.Println(UID)
-	fmt.Printf("%T", UID)
-	// service.UpdateUserInfoByID(UID, nickName, signature, sexInt, avatar)
-
+	// interface 转 string
+	uid, _ := c.Keys["UID"].(string)
+	// string 转成int64
+	uidInt64, _ := strconv.ParseInt(uid, 10, 64)
+	ok, userInfo := service.UpdateUserInfoByID(uidInt64, nickName, signature, sexInt, avatar)
+	if !ok {
+		c.JSON(200, gin.H{
+			"ret": "更新失败",
+		})
+		return
+	}
 	c.JSON(200, gin.H{
-		"ret": ret,
+		"ret": userInfo,
 	})
 }
 
