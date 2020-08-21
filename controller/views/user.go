@@ -92,9 +92,6 @@ func ActionUpdateUserInfo(c *gin.Context) {
 	avatar := c.PostForm("avatar")
 
 	sexInt, _ := strconv.Atoi(sex)
-	// uid, _ := userInfo["id"].(string)
-	// uidInt64, _ := strconv.ParseInt(uid, 10, 64)
-	// 生成token
 	// interface 转 string
 	uid, _ := c.Keys["UID"].(string)
 	// string 转成int64
@@ -102,12 +99,15 @@ func ActionUpdateUserInfo(c *gin.Context) {
 	ok, userInfo := service.UpdateUserInfoByID(uidInt64, nickName, signature, sexInt, avatar)
 	if !ok {
 		c.JSON(200, gin.H{
-			"ret": "更新失败",
+			"error_code": 11002,
+			"msg":        "更新失败",
 		})
 		return
 	}
 	c.JSON(200, gin.H{
-		"ret": userInfo,
+		"error_code": 0,
+		"msg":        "更新成功",
+		"data":       userInfo,
 	})
 }
 
