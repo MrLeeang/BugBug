@@ -4,10 +4,11 @@ import (
 	"time"
 
 	"BugBug/utils"
+
 	"github.com/gin-gonic/gin"
 )
 
-// LoggerToFile 日志记录到文件
+// Logger 日志记录到文件
 func Logger() gin.HandlerFunc {
 	logger := utils.Logger()
 	return func(c *gin.Context) {

@@ -17,6 +17,8 @@ func main() {
 
 	// 注册logger
 	r.Use(middleware.Logger())
+	// 跨域
+	r.Use(middleware.Cors())
 	// 注册路由
 	controller.MakeRouter(r)
 	// 启动

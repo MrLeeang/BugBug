@@ -2,8 +2,9 @@ package views
 
 import (
 	"BugBug/service"
-	"github.com/gin-gonic/gin"
 	"time"
+
+	"github.com/gin-gonic/gin"
 )
 
 // ActionUserInfo 用户信息
@@ -22,6 +23,19 @@ func ActionUserInfo(c *gin.Context) {
 
 	c.JSON(200, gin.H{
 		"data":       userInfo,
+		"error_code": 0,
+		"msg":        "success.",
+	})
+}
+
+// ActionUserInfo 用户列表
+func ActionUserList(c *gin.Context) {
+
+	// 用户信息
+	allUserList := service.GetUsers()
+
+	c.JSON(200, gin.H{
+		"data":       allUserList,
 		"error_code": 0,
 		"msg":        "success.",
 	})
@@ -66,7 +80,7 @@ func ActionUserLogin(c *gin.Context) {
 	})
 }
 
-// ActionUserLogin 关注
+// ActionUpdateUserInfo 更新用户信息
 func ActionUpdateUserInfo(c *gin.Context) {
 	// 定义返回值
 	var ret = map[string]interface{}{}

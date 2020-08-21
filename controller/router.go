@@ -2,6 +2,7 @@ package controller
 
 import (
 	"BugBug/controller/views"
+
 	"github.com/gin-gonic/gin"
 )
 
@@ -11,8 +12,8 @@ func MakeRouter(r *gin.Engine) {
 	r.GET("/v1/user/:userId/info", views.ActionUserInfo)
 	// 用户登录
 	r.POST("/v1/user/login", views.ActionUserLogin)
-	//
-	r.GET("/v1/user/")
+	// 用户列表
+	r.GET("/v1/user", views.AuthHandler(), views.ActionUserList)
 	// 修改用户信息
 	r.PUT("/v1/user/update", views.AuthHandler(), views.ActionUpdateUserInfo)
 	// 关注

@@ -9,11 +9,13 @@ require (
 	github.com/agrison/go-tablib v0.0.0-20160310143025-4930582c22ee // indirect
 	github.com/agrison/mxj v0.0.0-20160310142625-1269f8afb3b4 // indirect
 	github.com/bndr/gotabulate v1.1.2 // indirect
+	github.com/clbanning/mxj v1.8.4 // indirect
 	github.com/dgrijalva/jwt-go v3.2.0+incompatible
 	github.com/fatih/structs v1.1.0 // indirect
 	github.com/fsnotify/fsnotify v1.4.9 // indirect
 	github.com/gin-gonic/gin v1.6.3
 	github.com/go-sql-driver/mysql v1.5.0
+	github.com/mattn/go-sqlite3 v1.14.1 // indirect
 	github.com/sirupsen/logrus v1.6.0
 	github.com/syndtr/goleveldb v1.0.0 // indirect
 	github.com/tealeg/xlsx v1.0.5 // indirect
