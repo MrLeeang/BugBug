@@ -2,6 +2,7 @@ package views
 
 import (
 	"BugBug/service"
+
 	"github.com/gin-gonic/gin"
 )
 
@@ -47,6 +48,24 @@ func ActionPostPublish(c *gin.Context) {
 
 	c.JSON(200, gin.H{
 		"data":       postInfo,
+		"error_code": 0,
+		"msg":        "success.",
+	})
+}
+
+// ActionPostCommentList 帖子评论列表
+func ActionPostCommentList(c *gin.Context) {
+	postID := c.Param("postID")
+
+	queryMap := map[string]interface{}{
+		"pid":  postID,
+		"pcid": 0,
+	}
+
+	PostCommentList := service.DetailPostComments(queryMap)
+
+	c.JSON(200, gin.H{
+		"data":       PostCommentList,
 		"error_code": 0,
 		"msg":        "success.",
 	})
