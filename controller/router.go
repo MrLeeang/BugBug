@@ -35,6 +35,12 @@ func MakeRouter(r *gin.Engine) {
 
 	// 发布帖子
 	r.POST("/v1/post/publish", views.AuthHandler(), views.ActionPostPublish)
+	// 用户的帖子列表
+	r.GET("/v1/user/:userId/posts", views.ActionUserPostList)
+	// 推荐的帖子列表
+	r.GET("/v1/post", views.ActionRecommendPostList)
+	// 帖子详情
+	r.GET("/v1/post/:postID/info", views.ActionPostInfo)
 
 	// 暂未开发的功能
 	// 关注

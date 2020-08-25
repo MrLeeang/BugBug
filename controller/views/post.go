@@ -70,3 +70,44 @@ func ActionPostCommentList(c *gin.Context) {
 		"msg":        "success.",
 	})
 }
+
+// ActionUserPostList 用户帖子列表
+func ActionUserPostList(c *gin.Context) {
+	userID := c.Param("userId")
+	postList := service.DetailPostList("uid", userID)
+	c.JSON(200, gin.H{
+		"data":       postList,
+		"error_code": 0,
+		"msg":        "success.",
+	})
+}
+
+// ActionRecommendPostList 推荐的帖子
+func ActionRecommendPostList(c *gin.Context) {
+	postList := service.DetailPostList("uid", "1")
+	c.JSON(200, gin.H{
+		"data":       postList,
+		"error_code": 0,
+		"msg":        "success.",
+	})
+}
+
+// ActionPostInfo 帖子详情
+func ActionPostInfo(c *gin.Context) {
+	postID := c.Param("postID")
+	postList := service.DetailPostList("id", postID)
+	if len(postList) == 0 {
+		c.JSON(200, gin.H{
+			"data":       nil,
+			"error_code": 0,
+			"msg":        "success.",
+		})
+		return
+	}
+	c.JSON(200, gin.H{
+		"data":       postList[0],
+		"error_code": 0,
+		"msg":        "success.",
+	})
+
+}

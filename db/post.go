@@ -3,6 +3,7 @@ package db
 import (
 	models "BugBug/models"
 	"BugBug/utils"
+	"fmt"
 )
 
 // GetPostByID 根据id获取帖子
@@ -53,4 +54,19 @@ func GetPostVideoByPostID(postID int64) models.FbPostVideos {
 
 	return postVideo
 
+}
+
+// DetailPostList 查询
+func DetailPostList(key string, value interface{}) []models.FbPosts {
+	// 定义一个数组存放结构体
+	var postList []models.FbPosts
+	// 查询
+	sqlString := fmt.Sprintf("%s=?", key)
+	var err = Engine.Where(sqlString, value).Find(&postList)
+
+	if err != nil {
+		utils.UtilsLogger.Error(err)
+	}
+
+	return postList
 }
