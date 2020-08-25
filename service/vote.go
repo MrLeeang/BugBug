@@ -28,3 +28,13 @@ func CountVoteByUserID(userID string) int {
 	}
 	return voteCount
 }
+
+// AddVote 点赞
+func AddVote(uid string, pid string, pcid string, result string) bool {
+	return db.AddVote(uid, pid, pcid, result)
+}
+
+// CancelVote 取消点赞
+func CancelVote(pid string, pcid string, uid string) bool {
+	return db.CancelVote(pid, pcid, uid)
+}
