@@ -45,6 +45,8 @@ func MakeRouter(r *gin.Engine) {
 	// 帖子详情
 	v1.GET("/post/:postID/info", views.ActionPostInfo)
 
+	// messages
+
 	// 暂未开发的功能
 	// 关注
 	v1.POST("/user/follow/:userId", views.AuthHandler(), views.ActionAddUserFollow)

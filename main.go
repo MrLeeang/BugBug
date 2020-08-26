@@ -13,12 +13,12 @@ func main() {
 	// 禁用控制台颜色
 	// gin.DisableConsoleColor()
 
+	// gin.DefaultErrorWriter = utils.UtilsLogger.Out
+
 	r := gin.New()
 
-	// 注册logger
-	r.Use(middleware.Logger())
-	// 跨域
-	r.Use(middleware.Cors())
+	// 注册logger 跨域
+	r.Use(middleware.Logger(), gin.Recovery(), middleware.Cors())
 	// 注册路由
 	controller.MakeRouter(r)
 	// 启动

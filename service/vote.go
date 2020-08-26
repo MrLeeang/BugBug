@@ -20,7 +20,6 @@ func CountVoteByUserID(userID string) int {
 		return 0
 	}
 	queryInfo := queryResult[0]
-	utils.UtilsLogger.Info(queryInfo["count(id)"])
 	voteCount, err := strconv.Atoi(queryInfo["count(id)"])
 	if err != nil {
 		utils.UtilsLogger.Error(err)
