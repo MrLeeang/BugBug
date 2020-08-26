@@ -8,8 +8,58 @@ import (
 
 // AddPost 创建帖子
 func AddPost(postData map[string]interface{}) map[string]interface{} {
+	postModel := db.AddPost(postData)
+	// 拿类型
+	postType := postData["type"]
+	if postType == 4 || postType == 0 {
+		// 纯链接
+		return postData
+	} else if postType == 2 {
+		// 有视频
+	}
+	// 图片信息处理
+	postImgList := []map[string]interface{}{}
+	imgs := postData["imgs"]
+	imgObj := reflect.ValueOf(imgs)
+	if imgObj.Kind() == reflect.Slice {
+		if imgObj.Len() != 0 {
+			for i := 0; i < imgObj.Len(); i++ {
+				imgURL := imgObj.Index(i).Interface()
+				postImg := map[string]interface{}{}
+				postImg["url"] = imgURL
+				postImg["uid"] = postData["uid"]
+				postImg["pid"] = postModel.Id
+				db.AddPostImg(postImg)
+				postImgList = append(postImgList, postImg)
+			}
+		}
+	}
 
-	return map[string]interface{}{}
+	// 重写图片信息
+	postData["imgs"] = postImgList
+
+	// 话题
+	postTopicList := []map[string]interface{}{}
+	topics := postData["topics"]
+	topicObj := reflect.ValueOf(topics)
+	if topicObj.Kind() == reflect.Slice {
+		if topicObj.Len() != 0 {
+			for i := 0; i < topicObj.Len(); i++ {
+				cid := topicObj.Index(i).Interface()
+				postTopic := map[string]interface{}{}
+				postTopic["cid"] = cid
+				postTopic["uid"] = postData["uid"]
+				postTopic["pid"] = postModel.Id
+				db.AddPostTopic(postTopic)
+				postImgList = append(postTopicList, postTopic)
+			}
+		}
+	}
+
+	// 重写图片信息
+	postData["topics"] = postTopicList
+	postData["id"] = postModel.Id
+	return postData
 }
 
 // GetPostByID 获取帖子

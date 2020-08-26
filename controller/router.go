@@ -32,6 +32,8 @@ func MakeRouter(r *gin.Engine) {
 	r.POST("/v1/adopt/post", views.AuthHandler(), views.ActionAdoptPost)
 	// 用户采纳的帖子
 	r.GET("/v1/adopt/:userId/posts", views.AuthHandler(), views.ActionUserAdoptList)
+	// 上传token
+	r.GET("/v1/upload/token", views.AuthHandler(), views.ActionUploadToken)
 
 	// 发布帖子
 	r.POST("/v1/post/publish", views.AuthHandler(), views.ActionPostPublish)

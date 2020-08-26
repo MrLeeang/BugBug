@@ -35,6 +35,8 @@ func ActionPostPublish(c *gin.Context) {
 		postType = 4
 	}
 	var postData = map[string]interface{}{}
+	uid := c.Keys["UID"].(string)
+	postData["uid"] = uid
 	postData["cid"] = cid
 	postData["content"] = content
 	postData["imgs"] = imgs
@@ -43,13 +45,14 @@ func ActionPostPublish(c *gin.Context) {
 	postData["coordinate"] = coordinate
 	postData["link"] = link
 	postData["type"] = postType
+
 	// 写入数据库
 	postInfo := service.AddPost(postData)
 
 	c.JSON(200, gin.H{
 		"data":       postInfo,
 		"error_code": 0,
-		"msg":        "success.",
+		"msg":        "发布成功.",
 	})
 }
 
