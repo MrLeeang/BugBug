@@ -41,7 +41,7 @@ func MakeRouter(r *gin.Engine) {
 	// 用户的帖子列表
 	v1.GET("/user/:userId/posts", views.ActionUserPostList)
 	// 推荐的帖子列表
-	v1.GET("/post", views.ActionRecommendPostList)
+	v1.GET("/post/:postID", views.ActionRecommendPostList)
 	// 帖子详情
 	v1.GET("/post/:postID/info", views.ActionPostInfo)
 

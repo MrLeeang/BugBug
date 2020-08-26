@@ -87,6 +87,10 @@ func ActionUserPostList(c *gin.Context) {
 
 // ActionRecommendPostList 推荐的帖子
 func ActionRecommendPostList(c *gin.Context) {
+	// 找到关注的人发表的
+
+	// 所有加入的圈子
+
 	postList := service.DetailPostList("uid", "1")
 	c.JSON(200, gin.H{
 		"data":       postList,
