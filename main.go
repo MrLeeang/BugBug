@@ -9,7 +9,7 @@ import (
 )
 
 func main() {
-	gin.SetMode(gin.ReleaseMode)
+	// gin.SetMode(gin.ReleaseMode)
 	// 禁用控制台颜色
 	// gin.DisableConsoleColor()
 
