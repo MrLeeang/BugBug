@@ -4,13 +4,13 @@ const (
 	// DbType 数据类型
 	DbType = "mysql"
 	// DbHost 数据库地址
-	DbHost = "49.233.185.3"
+	DbHost = "api.xianglian.group"
 	// DbPort DbPort
 	DbPort = "3306"
 	// DbUser DbUser
 	DbUser = "root"
 	// DbPass DbPass
-	DbPass = "reader"
+	DbPass = "bugbug@2020"
 	// DbName DbName
 	DbName = "feedback"
 	// RedisHost RedisHost

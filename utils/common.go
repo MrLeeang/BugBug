@@ -1,12 +1,13 @@
 package utils
 
+// RetCodeModel RetCodeModel
 type RetCodeModel struct {
 	Success                 int
 	ExceptionError          int
-	HttpBadRequest          int
-	HttpUnAuthorized        int
-	HttpNotFound            int
-	HttpInternalServerError int
+	HTTPBadRequest          int
+	HTTPUnAuthorized        int
+	HTTPNotFound            int
+	HTTPInternalServerError int
 	ParamRequired           int
 	NotFoundInfo            int
 	ParamError              int
@@ -16,20 +17,20 @@ type RetCodeModel struct {
 
 var (
 
-	// RetCode
+	// RetCode RetCode
 	RetCode = RetCodeModel{
 		Success:                 200,
-		HttpBadRequest:          400,
-		HttpUnAuthorized:        401,
-		HttpNotFound:            404,
-		HttpInternalServerError: 500,
+		HTTPBadRequest:          400,
+		HTTPUnAuthorized:        401,
+		HTTPNotFound:            404,
+		HTTPInternalServerError: 500,
 		ParamRequired:           1001,
 		NotFoundInfo:            1002,
 		ParamError:              1003,
 		LoginError:              1004,
 		VerifyFailed:            1005,
 	}
-	// ErrorCodeMessage
+	// ErrorCodeMessage ErrorCodeMessage
 	ErrorCodeMessage = map[int]string{
 		200:  "SUCCESS",
 		401:  "登录失败",

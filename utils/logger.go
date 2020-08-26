@@ -9,9 +9,10 @@ import (
 	"github.com/sirupsen/logrus"
 )
 
+// MyFormatter MyFormatter
 type MyFormatter struct{}
 
-// 设置日志格式
+// Format Format
 func (s *MyFormatter) Format(entry *logrus.Entry) ([]byte, error) {
 	timestamp := time.Now().Local().Format("2006/01/02 15:04:05")
 	// 日志格式
