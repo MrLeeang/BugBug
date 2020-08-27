@@ -39,3 +39,16 @@ func CancelVote(pid string, pcid string, uid string) bool {
 	}
 	return true
 }
+
+// GetVoteListByUserPost 用户帖子点赞列表
+func GetVoteListByUserPost(userID string, page string, size string) []map[string]interface{} {
+	pageInt, _ := strconv.Atoi(page)
+	sizeInt, _ := strconv.Atoi(size)
+	sqlStr := "SELECT vote.id as vid, u.nickname, post.content, post.id as pid from fb_votes vote, fb_posts post, fb_users u  WHERE vote.pid=post.id and vote.uid=u.id and post.id in (SELECT id FROM fb_posts WHERE uid = ? )"
+	results, err := Engine.SQL(sqlStr, userID).Query().ListPage(pageInt, sizeInt)
+	if err != nil {
+		utils.UtilsLogger.Error(err)
+		return []map[string]interface{}{}
+	}
+	return results
+}

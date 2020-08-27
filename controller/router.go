@@ -46,6 +46,8 @@ func MakeRouter(r *gin.Engine) {
 	v1.GET("/post/:postID/info", views.ActionPostInfo)
 
 	// messages
+	// 用户帖子点赞列表
+	v1.GET("/information/get_vote_list", views.AuthHandler(), views.GetVoteListByUserPost)
 
 	// 暂未开发的功能
 	// 关注

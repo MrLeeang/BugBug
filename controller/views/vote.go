@@ -76,3 +76,24 @@ func ActionVoteCancel(c *gin.Context) {
 		"msg":        "已取消点赞",
 	})
 }
+
+// GetVoteListByUserPost 根据用户帖子获取点赞列表
+func GetVoteListByUserPost(c *gin.Context) {
+	uid := c.Keys["UID"].(string)
+	page := c.Query("page")
+	size := c.Query("size")
+
+	if page == "" {
+		page = "1"
+	}
+	if size == "" {
+		size = "10"
+	}
+
+	data := service.GetVoteListByUserPost(uid, page, size)
+	c.JSON(200, gin.H{
+		"error_code": 0,
+		"msg":        "success",
+		"data":       data,
+	})
+}
