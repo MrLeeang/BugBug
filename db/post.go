@@ -4,6 +4,7 @@ import (
 	models "BugBug/models"
 	"BugBug/utils"
 	"fmt"
+	"reflect"
 	"strconv"
 	"time"
 )
@@ -59,13 +60,30 @@ func GetPostVideoByPostID(postID int64) models.FbPostVideos {
 }
 
 // DetailPostList 查询
-func DetailPostList(key string, value interface{}) []models.FbPosts {
+func DetailPostList(params map[string]interface{}, keywords string, page int, size int) []models.FbPosts {
 	// 定义一个数组存放结构体
 	var postList []models.FbPosts
-	// 查询
-	sqlString := fmt.Sprintf("%s=?", key)
-	var err = Engine.Where(sqlString, value).Find(&postList)
 
+	// 反射
+	m := reflect.ValueOf(params)
+	// 不是map
+	if m.Kind() != reflect.Map {
+		utils.UtilsLogger.Error("params error")
+		return postList
+	}
+
+	query := Engine.Where("id!=?", 0)
+	// 通过反射拿到所有的key
+	keys := m.MapKeys()
+	for _, key := range keys {
+		value := m.MapIndex(key)
+		sqlString := fmt.Sprintf("%s=?", key.Interface())
+		query.And(sqlString, value.Interface())
+	}
+	if keywords != "" {
+		query.And("content like ? or title like ?", "%"+keywords+"%", "%"+keywords+"%")
+	}
+	var err = query.Limit(size*page, (page-1)*size).Find(&postList)
 	if err != nil {
 		utils.UtilsLogger.Error(err)
 	}

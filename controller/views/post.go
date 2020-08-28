@@ -2,6 +2,7 @@ package views
 
 import (
 	"BugBug/service"
+	"strconv"
 
 	"github.com/gin-gonic/gin"
 )
@@ -77,7 +78,9 @@ func ActionPostCommentList(c *gin.Context) {
 // ActionUserPostList 用户帖子列表
 func ActionUserPostList(c *gin.Context) {
 	userID := c.Param("userId")
-	postList := service.DetailPostList("uid", userID)
+	queryMap := map[string]interface{}{}
+	queryMap["uid"] = userID
+	postList := service.DetailPostList(queryMap, "", 1, 50)
 	c.JSON(200, gin.H{
 		"data":       postList,
 		"error_code": 0,
@@ -88,10 +91,22 @@ func ActionUserPostList(c *gin.Context) {
 // ActionRecommendPostList 推荐的帖子
 func ActionRecommendPostList(c *gin.Context) {
 	// 找到关注的人发表的
-
+	queryMap := map[string]interface{}{}
 	// 所有加入的圈子
+	page := c.Query("page")
+	size := c.Query("size")
+	keywords := c.Query("keywords")
+	if page == "" {
+		page = "1"
+	}
+	if size == "" {
+		size = "50"
+	}
 
-	postList := service.DetailPostList("uid", "1")
+	pageInt, _ := strconv.Atoi(page)
+	sizeInt, _ := strconv.Atoi(size)
+
+	postList := service.DetailPostList(queryMap, keywords, pageInt, sizeInt)
 	c.JSON(200, gin.H{
 		"data":       postList,
 		"error_code": 0,
@@ -102,7 +117,9 @@ func ActionRecommendPostList(c *gin.Context) {
 // ActionPostInfo 帖子详情
 func ActionPostInfo(c *gin.Context) {
 	postID := c.Param("postID")
-	postList := service.DetailPostList("id", postID)
+	queryMap := map[string]interface{}{}
+	queryMap["id"] = postID
+	postList := service.DetailPostList(queryMap, "", 1, 50)
 	if len(postList) == 0 {
 		c.JSON(200, gin.H{
 			"data":       nil,

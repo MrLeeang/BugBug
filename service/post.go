@@ -68,12 +68,12 @@ func GetPostByID(id string) models.FbPosts {
 }
 
 // DetailPostList 查询postlist
-func DetailPostList(key string, value interface{}) []map[string]interface{} {
+func DetailPostList(queryMap map[string]interface{}, keywords string, page int, size int) []map[string]interface{} {
 
 	// 所有帖子
 	allPostInfoList := []map[string]interface{}{}
 	// 获取所有采纳的帖子
-	posts := db.DetailPostList(key, value)
+	posts := db.DetailPostList(queryMap, keywords, page, size)
 	// 获取用户列表
 	userList := db.QueryUsers()
 	allUserMapData := map[int64]interface{}{}
