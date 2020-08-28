@@ -28,7 +28,15 @@ func ActionVotePost(c *gin.Context) {
 		})
 		return
 	}
-
+	postModel := service.GetPostByID(pid)
+	uidInt64 := postModel.Uid
+	if uidInt64 == 0 {
+		c.JSON(200, gin.H{
+			"error_code": 7000,
+			"msg":        "帖子不存在",
+		})
+		return
+	}
 	uid := c.Keys["UID"].(string)
 	ok := service.AddVote(uid, pid, pcid, result)
 	if !ok {
@@ -39,8 +47,8 @@ func ActionVotePost(c *gin.Context) {
 		return
 	}
 	// 更新redis
-	postModel := service.GetPostByID(pid)
-	uidInt64 := postModel.Uid
+
+	utils.UtilsLogger.Info(uidInt64)
 	if uidInt64 != 0 {
 		uidString := strconv.FormatInt(uidInt64, 10)
 		voteNum, _ := redis.Int64(utils.RedisClient.Get(uidString + "vote"))
