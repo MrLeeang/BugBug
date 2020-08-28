@@ -12,12 +12,13 @@ type Redis struct {
 	pool *red.Pool
 }
 
-var redis *Redis
+// RedisClient RedisClient
+var RedisClient *Redis
 
 // InitRedis 初始化redis
 func InitRedis() {
-	redis = new(Redis)
-	redis.pool = &red.Pool{
+	RedisClient = new(Redis)
+	RedisClient.pool = &red.Pool{
 		MaxIdle:     256,
 		MaxActive:   0,
 		IdleTimeout: time.Duration(120),
