@@ -82,3 +82,13 @@ func UserAdpotPostList(uid string) []map[string]interface{} {
 	}
 	return allPostInfoList
 }
+
+// GetAdoptListByUserPost 根据用户帖子获取采纳列表
+func GetAdoptListByUserPost(userID string, page string, size string) []map[string]interface{} {
+	return db.GetAdoptListByUserPost(userID, page, size)
+}
+
+// GetAdoptPostListByUser 根据用户帖子获取采纳列表
+func GetAdoptPostListByUser(userID string, page string, size string) []map[string]interface{} {
+	return db.GetAdoptPostListByUser(userID, page, size)
+}

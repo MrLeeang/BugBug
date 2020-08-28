@@ -131,3 +131,18 @@ func ActionCommentReplyList(c *gin.Context) {
 		"msg":        "success.",
 	})
 }
+
+// ActionCommentListByUser 我得评论列表
+func ActionCommentListByUser(c *gin.Context) {
+	queryMap := map[string]interface{}{
+		"to_uid": c.Keys["UID"].(string),
+	}
+
+	PostCommentList := service.DetailPostComments(queryMap)
+
+	c.JSON(200, gin.H{
+		"data":       PostCommentList,
+		"error_code": 0,
+		"msg":        "success.",
+	})
+}

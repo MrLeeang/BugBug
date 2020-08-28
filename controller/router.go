@@ -48,6 +48,13 @@ func MakeRouter(r *gin.Engine) {
 	// messages
 	// 用户帖子点赞列表
 	v1.GET("/information/get_vote_list", views.AuthHandler(), views.GetVoteListByUserPost)
+	// 用户帖子采纳列表
+	v1.GET("/information/get_adopt_list", views.AuthHandler(), views.GetVoteListByUserPost)
+	// 我得采纳列表 get_adopt_list
+	v1.GET("/user/:userId", views.AuthHandler(), views.GetAdoptPostListByUser)
+	// 我的评论列表
+	v1.GET("/vote/msgcomm", views.AuthHandler(), views.ActionCommentListByUser)
+	// 未读消息 redis
 
 	// 暂未开发的功能
 	// 关注
