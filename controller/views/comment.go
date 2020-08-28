@@ -72,8 +72,7 @@ func ActionCreateComment(c *gin.Context) {
 	}
 
 	// 更新redis
-	postModel := service.GetPostByID(pid)
-	uidInt64 := postModel.Uid
+	uidInt64 := post.Uid
 	if uidInt64 != 0 {
 		uidString := strconv.FormatInt(uidInt64, 10)
 		voteNum, _ := redis.Int64(utils.RedisClient.Get(uidString + "comment"))
