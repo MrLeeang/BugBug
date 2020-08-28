@@ -110,10 +110,51 @@ func GetVoteListByUserPost(c *gin.Context) {
 		size = "10"
 	}
 
+	utils.RedisClient.Set(uid+"vote", 0)
+
 	data := service.GetVoteListByUserPost(uid, page, size)
 	c.JSON(200, gin.H{
 		"error_code": 0,
 		"msg":        "success",
 		"data":       data,
+	})
+}
+
+// ActionMsgadopt ActionMsgadopt
+func ActionMsgadopt(c *gin.Context) {
+	uid := c.Keys["UID"].(string)
+	voteNum, _ := redis.Int64(utils.RedisClient.Get(uid + "adopt"))
+	c.JSON(200, gin.H{
+		"error_code": 0,
+		"msg":        "success",
+		"data": map[string]int64{
+			"num": voteNum,
+		},
+	})
+}
+
+// ActionMsglike ActionMsglike
+func ActionMsglike(c *gin.Context) {
+	uid := c.Keys["UID"].(string)
+	voteNum, _ := redis.Int64(utils.RedisClient.Get(uid + "vote"))
+	c.JSON(200, gin.H{
+		"error_code": 0,
+		"msg":        "success",
+		"data": map[string]int64{
+			"num": voteNum,
+		},
+	})
+}
+
+// ActionMsgcomment ActionMsgcomment
+func ActionMsgcomment(c *gin.Context) {
+	uid := c.Keys["UID"].(string)
+	voteNum, _ := redis.Int64(utils.RedisClient.Get(uid + "comment"))
+	c.JSON(200, gin.H{
+		"error_code": 0,
+		"msg":        "success",
+		"data": map[string]int64{
+			"num": voteNum,
+		},
 	})
 }

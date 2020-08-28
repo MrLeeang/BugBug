@@ -46,15 +46,20 @@ func MakeRouter(r *gin.Engine) {
 	v1.GET("/post/:postID/info", views.ActionPostInfo)
 
 	// messages
-	// 用户帖子点赞列表
+	// 点赞我的
 	v1.GET("/information/get_vote_list", views.AuthHandler(), views.GetVoteListByUserPost)
-	// 用户帖子采纳列表
-	v1.GET("/information/get_adopt_list", views.AuthHandler(), views.GetVoteListByUserPost)
-	// 我得采纳列表 get_adopt_list
-	v1.GET("/user/:userId", views.AuthHandler(), views.GetAdoptPostListByUser)
-	// 我的评论列表
+	// 采纳我的
+	v1.GET("/information/get_adopt_list", views.AuthHandler(), views.GetAdoptListByUserPost)
+	// 评论我的列表
 	v1.GET("/vote/msgcomm", views.AuthHandler(), views.ActionCommentListByUser)
-	// 未读消息 redis
+	// 我的采纳列表 get_adopt_list
+	v1.GET("/user/:userId", views.AuthHandler(), views.GetAdoptPostListByUser)
+	// 消息 - 未读采纳
+	v1.GET("/vote/msgadopt", views.AuthHandler(), views.ActionMsgadopt)
+	// 消息-未读点赞
+	v1.GET("/vote/msglike", views.AuthHandler(), views.ActionMsglike)
+	// 消息-未读评论
+	v1.GET("/vote/msgcomment", views.AuthHandler(), views.ActionMsgcomment)
 
 	// 暂未开发的功能
 	// 关注

@@ -77,7 +77,7 @@ func GetAdoptListByUserPost(c *gin.Context) {
 	if size == "" {
 		size = "10"
 	}
-
+	utils.RedisClient.Set(uid+"adopt", 0)
 	data := service.GetAdoptListByUserPost(uid, page, size)
 	c.JSON(200, gin.H{
 		"error_code": 0,

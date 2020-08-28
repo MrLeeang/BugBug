@@ -145,9 +145,12 @@ func ActionCommentReplyList(c *gin.Context) {
 
 // ActionCommentListByUser 我得评论列表
 func ActionCommentListByUser(c *gin.Context) {
+	uid := c.Keys["UID"].(string)
 	queryMap := map[string]interface{}{
-		"to_uid": c.Keys["UID"].(string),
+		"to_uid": uid,
 	}
+
+	utils.RedisClient.Set(uid+"comment", 0)
 
 	PostCommentList := service.DetailPostComments(queryMap)
 
