@@ -4,12 +4,12 @@ import (
 	"reflect"
 	"time"
 
-	red "github.com/gomodule/redigo/redis"
+	"github.com/gomodule/redigo/redis"
 )
 
 // Redis Redis
 type Redis struct {
-	pool *red.Pool
+	pool *redis.Pool
 }
 
 // RedisClient RedisClient
@@ -18,19 +18,19 @@ var RedisClient *Redis
 // InitRedis 初始化redis
 func InitRedis() {
 	RedisClient = new(Redis)
-	RedisClient.pool = &red.Pool{
+	RedisClient.pool = &redis.Pool{
 		MaxIdle:     256,
 		MaxActive:   0,
 		IdleTimeout: time.Duration(120),
-		Dial: func() (red.Conn, error) {
-			return red.Dial(
+		Dial: func() (redis.Conn, error) {
+			return redis.Dial(
 				"tcp",
 				RedisConnStr,
-				red.DialReadTimeout(time.Duration(1000)*time.Millisecond),
-				red.DialWriteTimeout(time.Duration(1000)*time.Millisecond),
-				red.DialConnectTimeout(time.Duration(1000)*time.Millisecond),
-				red.DialDatabase(0),
-				red.DialPassword(RedisPassword),
+				redis.DialReadTimeout(time.Duration(1000)*time.Millisecond),
+				redis.DialWriteTimeout(time.Duration(1000)*time.Millisecond),
+				redis.DialConnectTimeout(time.Duration(1000)*time.Millisecond),
+				redis.DialDatabase(0),
+				redis.DialPassword(RedisPassword),
 			)
 		},
 	}
