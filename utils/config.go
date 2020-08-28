@@ -1,5 +1,7 @@
 package utils
 
+import "fmt"
+
 const (
 	// DbType 数据类型
 	DbType = "mysql"
@@ -29,3 +31,6 @@ const (
 	// QiniuHost QiniuHost
 	QiniuHost = "http://img.xianglian.group"
 )
+
+// RedisConnStr RedisConnStr
+var RedisConnStr = fmt.Sprintf("%s:%s", RedisHost, RedisPort)

@@ -21,6 +21,7 @@ func main() {
 	r.Use(middleware.Logger(), gin.Recovery(), middleware.Cors())
 	// 注册路由
 	controller.MakeRouter(r)
+	utils.InitRedis()
 	// 启动
 	utils.UtilsLogger.Info("Server Run Success: 0.0.0.0:9502")
 	_ = r.Run(":9502")
