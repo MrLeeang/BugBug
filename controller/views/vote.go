@@ -2,8 +2,11 @@ package views
 
 import (
 	"BugBug/service"
+	"BugBug/utils"
+	"strconv"
 
 	"github.com/gin-gonic/gin"
+	"github.com/gomodule/redigo/redis"
 )
 
 // ActionVotePost 点赞
@@ -34,6 +37,15 @@ func ActionVotePost(c *gin.Context) {
 			"msg":        "点赞失败",
 		})
 		return
+	}
+	// 更新redis
+	postModel := service.GetPostByID(pid)
+	uidInt64 := postModel.Uid
+	if uidInt64 != 0 {
+		uidString := strconv.FormatInt(uidInt64, 10)
+		voteNum, _ := redis.Int64(utils.RedisClient.Get(uidString + "vote"))
+		voteNum++
+		utils.RedisClient.Set(uidString+"vote", voteNum)
 	}
 	c.JSON(200, gin.H{
 		"error_code": 0,

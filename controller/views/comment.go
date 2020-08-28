@@ -6,6 +6,7 @@ import (
 	"strconv"
 
 	"github.com/gin-gonic/gin"
+	"github.com/gomodule/redigo/redis"
 )
 
 // ActionCreateComment 发表评论
@@ -68,6 +69,16 @@ func ActionCreateComment(c *gin.Context) {
 			"msg":        "评论发表失败",
 		})
 		return
+	}
+
+	// 更新redis
+	postModel := service.GetPostByID(pid)
+	uidInt64 := postModel.Uid
+	if uidInt64 != 0 {
+		uidString := strconv.FormatInt(uidInt64, 10)
+		voteNum, _ := redis.Int64(utils.RedisClient.Get(uidString + "comment"))
+		voteNum++
+		utils.RedisClient.Set(uidString+"comment", voteNum)
 	}
 
 	c.JSON(200, gin.H{

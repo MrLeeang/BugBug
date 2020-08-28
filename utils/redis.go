@@ -61,17 +61,17 @@ func (redis Redis) Get(key string) (interface{}, error) {
 		return nil, err
 	}
 	defer con.Close()
-	return red.String(con.Do("get", key))
+	return con.Do("get", key)
 }
 
 // Set 插入
-func (redis Redis) Set(key string, value string) (interface{}, error) {
+func (redis Redis) Set(key string, value interface{}) (interface{}, error) {
 	con := redis.pool.Get()
 	if err := con.Err(); err != nil {
 		return nil, err
 	}
 	defer con.Close()
-	return red.String(con.Do("set", key, value))
+	return con.Do("set", key, value)
 }
 
 // Lpush 列表插入
@@ -90,7 +90,7 @@ func (redis Redis) Lpush(key string, values ...interface{}) (interface{}, error)
 		}
 	}
 
-	return red.String(con.Do("lpush", args...))
+	return con.Do("lpush", args...)
 }
 
 // Lpop Lpop
@@ -101,7 +101,7 @@ func (redis Redis) Lpop(key string) (interface{}, error) {
 	}
 	defer con.Close()
 
-	return red.String(con.Do("lpop", key))
+	return con.Do("lpop", key)
 }
 
 // Rpush 列表插入
@@ -120,7 +120,7 @@ func (redis Redis) Rpush(key string, values ...interface{}) (interface{}, error)
 		}
 	}
 
-	return red.String(con.Do("rpush", args...))
+	return con.Do("rpush", args...)
 }
 
 // Rpop Rpop
@@ -131,7 +131,7 @@ func (redis Redis) Rpop(key string) (interface{}, error) {
 	}
 	defer con.Close()
 
-	return red.String(con.Do("rpop", key))
+	return con.Do("rpop", key)
 }
 
 // Hset Hset
@@ -159,7 +159,7 @@ func (redis Redis) Hset(key string, dataMap map[string]interface{}) (interface{}
 		args = append(args, value.Interface())
 	}
 
-	return red.String(con.Do("hset", args...))
+	return con.Do("hset", args...)
 }
 
 // Hget Hget
@@ -178,5 +178,5 @@ func (redis Redis) Hget(key string, dataKeys ...interface{}) (interface{}, error
 		}
 	}
 
-	return red.String(con.Do("hget", args...))
+	return con.Do("hget", args...)
 }

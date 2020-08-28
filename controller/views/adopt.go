@@ -2,8 +2,11 @@ package views
 
 import (
 	"BugBug/service"
+	"BugBug/utils"
+	"strconv"
 
 	"github.com/gin-gonic/gin"
+	"github.com/gomodule/redigo/redis"
 )
 
 // ActionAdoptPost 采纳
@@ -25,6 +28,16 @@ func ActionAdoptPost(c *gin.Context) {
 			"msg":        "操作失败",
 		})
 		return
+	}
+
+	// 更新redis
+	postModel := service.GetPostByID(pid)
+	uidInt64 := postModel.Uid
+	if uidInt64 != 0 {
+		uidString := strconv.FormatInt(uidInt64, 10)
+		voteNum, _ := redis.Int64(utils.RedisClient.Get(uidString + "adopt"))
+		voteNum++
+		utils.RedisClient.Set(uidString+"adopt", voteNum)
 	}
 	c.JSON(200, gin.H{
 		"error_code": 0,
