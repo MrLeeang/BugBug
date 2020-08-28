@@ -163,7 +163,7 @@ func (redis Redis) Hset(key string, dataMap map[string]interface{}) (interface{}
 }
 
 // Hget Hget
-func (redis Redis) Hget(key string, keys ...interface{}) (interface{}, error) {
+func (redis Redis) Hget(key string, dataKeys ...interface{}) (interface{}, error) {
 	con := redis.pool.Get()
 	if err := con.Err(); err != nil {
 		return nil, err
@@ -172,8 +172,8 @@ func (redis Redis) Hget(key string, keys ...interface{}) (interface{}, error) {
 	args := make([]interface{}, 0)
 	args = append(args, key)
 
-	if len(keys) > 0 {
-		for _, v := range keys {
+	if len(dataKeys) > 0 {
+		for _, v := range dataKeys {
 			args = append(args, v)
 		}
 	}
