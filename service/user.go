@@ -9,6 +9,7 @@ import (
 	"io/ioutil"
 	"net/http"
 	"net/http/cookiejar"
+	"strconv"
 	"strings"
 	"time"
 
@@ -79,7 +80,7 @@ func GetUserByPhone(phone string) map[string]interface{} {
 		return ret
 	}
 	userInfo := queryResult[0]
-	ret["id"] = userInfo["id"]
+	ret["id"], _ = strconv.Atoi(userInfo["id"])
 	ret["phone"] = userInfo["phone"]
 	ret["nickname"] = userInfo["nickname"]
 	ret["avatar"] = userInfo["avatar"]

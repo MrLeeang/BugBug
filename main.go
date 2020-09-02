@@ -23,6 +23,6 @@ func main() {
 	controller.MakeRouter(r)
 	utils.InitRedis()
 	// 启动
-	utils.UtilsLogger.Info("Server Run Success: 0.0.0.0:9502")
-	_ = r.Run(":9502")
+	utils.UtilsLogger.Info("Server Run Success: 0.0.0.0:9501")
+	_ = r.Run(":9501")
 }

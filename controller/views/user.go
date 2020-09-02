@@ -2,6 +2,7 @@ package views
 
 import (
 	"BugBug/service"
+	"BugBug/utils"
 	"strconv"
 	"time"
 
@@ -49,15 +50,16 @@ func ActionUserLogin(c *gin.Context) {
 	phone := c.PostForm("phone")
 	code := c.PostForm("code")
 	// 验证验证码
-	verifyRet := service.VerifyLoginCode(phone, code)
-	if verifyRet == false {
-		//c.JSON(200, gin.H{
-		//	"error_code": 11002,
-		//	"msg": "验证码不正确",
-		//})
-		//return
-	}
+	// verifyRet := service.VerifyLoginCode(phone, code)
+	// if verifyRet == false {
+	// 	c.JSON(200, gin.H{
+	// 		"error_code": 11002,
+	// 		"msg":        "验证码不正确",
+	// 	})
+	// 	return
+	// }
 	// 获取用户信息
+	utils.UtilsLogger.Info(code)
 	userInfo := service.GetUserByPhone(phone)
 	if userInfo["id"] == nil {
 		c.JSON(200, gin.H{
