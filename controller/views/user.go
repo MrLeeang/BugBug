@@ -3,6 +3,7 @@ package views
 import (
 	"BugBug/service"
 	"BugBug/utils"
+	"reflect"
 	"strconv"
 	"time"
 
@@ -16,11 +17,21 @@ func ActionUserInfo(c *gin.Context) {
 
 	// 用户信息
 	userInfo := service.GetUserByID(userID)
-	if userInfo["id"] != nil {
+
+	userData := map[string]interface{}{}
+
+	obj1 := reflect.TypeOf(userInfo)
+	obj2 := reflect.ValueOf(userInfo)
+
+	for i := 0; i < obj1.NumField(); i++ {
+		userData[obj1.Field(i).Tag.Get("json")] = obj2.Field(i).Interface()
+	}
+
+	if userInfo.Id != 0 {
 		// 点赞数量
-		userInfo["vote_count"] = service.CountVoteByUserID(userID)
+		userData["vote_count"] = service.CountVoteByUserID(userID)
 		// 采纳数量
-		userInfo["adopt_count"] = service.CountAdoptByUserID(userID)
+		userData["adopt_count"] = service.CountAdoptByUserID(userID)
 	}
 
 	c.JSON(200, gin.H{
@@ -95,10 +106,9 @@ func ActionUpdateUserInfo(c *gin.Context) {
 
 	sexInt, _ := strconv.Atoi(sex)
 	// interface 转 string
-	uid, _ := c.Keys["UID"].(string)
-	// string 转成int64
-	uidInt64, _ := strconv.ParseInt(uid, 10, 64)
-	ok, userInfo := service.UpdateUserInfoByID(uidInt64, nickName, signature, sexInt, avatar)
+	uid, _ := c.Keys["UID"].(int64)
+
+	ok, userInfo := service.UpdateUserInfoByID(uid, nickName, signature, sexInt, avatar)
 	if !ok {
 		c.JSON(200, gin.H{
 			"error_code": 11002,

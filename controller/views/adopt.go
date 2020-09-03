@@ -19,7 +19,10 @@ func ActionAdoptPost(c *gin.Context) {
 		})
 		return
 	}
-	postModel := service.GetPostByID(pid)
+
+	pidInt64, _ := strconv.ParseInt(pid, 10, 64)
+
+	postModel := service.GetPostByID(pidInt64)
 	uidInt64 := postModel.Uid
 	if uidInt64 == 0 {
 		c.JSON(200, gin.H{
@@ -28,9 +31,9 @@ func ActionAdoptPost(c *gin.Context) {
 		})
 		return
 	}
-	uid := c.Keys["UID"].(string)
+	uid := c.Keys["UID"].(int64)
 
-	ok := service.AdoptPost(uid, pid)
+	ok := service.AdoptPost(uid, pidInt64)
 	if !ok {
 		c.JSON(200, gin.H{
 			"error_code": 500,
@@ -67,7 +70,7 @@ func ActionUserAdoptList(c *gin.Context) {
 
 // GetAdoptListByUserPost 根据用户帖子获取点赞列表
 func GetAdoptListByUserPost(c *gin.Context) {
-	uid := c.Keys["UID"].(string)
+	uid := c.Keys["UID"].(int64)
 	page := c.Query("page")
 	size := c.Query("size")
 
@@ -77,7 +80,8 @@ func GetAdoptListByUserPost(c *gin.Context) {
 	if size == "" {
 		size = "10"
 	}
-	utils.RedisClient.Set(uid+"adopt", 0)
+	uidStr := strconv.FormatInt(uid, 10)
+	utils.RedisClient.Set(uidStr+"adopt", 0)
 	data := service.GetAdoptListByUserPost(uid, page, size)
 	c.JSON(200, gin.H{
 		"error_code": 0,
@@ -88,7 +92,7 @@ func GetAdoptListByUserPost(c *gin.Context) {
 
 // GetAdoptPostListByUser 我得采纳列表
 func GetAdoptPostListByUser(c *gin.Context) {
-	uid := c.Keys["UID"].(string)
+	uid := c.Keys["UID"].(int64)
 	page := c.Query("page")
 	size := c.Query("size")
 

@@ -5,25 +5,21 @@ import (
 	"BugBug/utils"
 	"fmt"
 	"reflect"
-	"strconv"
 	"time"
 )
 
 // CreateComment 发表评论
 func CreateComment(params map[string]interface{}) (bool, models.FbPostComments) {
 	var postComment = &models.FbPostComments{}
-	uid := params["uid"].(string)
-	pid := params["pid"].(string)
-	pcid := params["pcid"].(string)
+	uid := params["uid"].(int64)
+	pid := params["pid"].(int64)
+	pcid := params["pcid"].(int64)
 
 	// string 转成int64
-	uidInt64, _ := strconv.ParseInt(uid, 10, 64)
-	pidInt64, _ := strconv.ParseInt(pid, 10, 64)
-	pcidInt64, _ := strconv.ParseInt(pcid, 10, 64)
 
-	postComment.Uid = uidInt64
-	postComment.Pid = pidInt64
-	postComment.Pcid = pcidInt64
+	postComment.Uid = uid
+	postComment.Pid = pid
+	postComment.Pcid = pcid
 	postComment.ToUid = params["toUid"].(int64)
 	postComment.Content = params["content"].(string)
 	postComment.CreatedAt = time.Now()

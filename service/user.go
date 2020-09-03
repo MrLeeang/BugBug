@@ -36,33 +36,35 @@ func GetUserByPhoneToModel(email string) models.FbUsers {
 }
 
 // GetUserByID 根据id获取用户信息
-func GetUserByID(userID string) map[string]interface{} {
+func GetUserByID(userID string) models.FbUsers {
 
-	var ret = map[string]interface{}{}
+	return db.GetUserByID(userID)
 
-	sqlStr := fmt.Sprintf("select * from fb_users where id='%s' limit 1;", userID)
-	queryResult, err := db.Engine.QueryString(sqlStr)
-	if err != nil {
-		utils.UtilsLogger.Error(err)
-		return ret
-	}
-	if len(queryResult) < 1 {
-		return ret
-	}
-	userInfo := queryResult[0]
-	ret["id"] = userInfo["id"]
-	ret["phone"] = userInfo["phone"]
-	ret["nickname"] = userInfo["nickname"]
-	ret["avatar"] = userInfo["avatar"]
-	ret["signature"] = userInfo["signature"]
-	ret["status"] = userInfo["status"]
-	ret["level"] = userInfo["level"]
-	ret["score"] = userInfo["score"]
-	ret["last_login"] = userInfo["last_login"]
-	ret["created_at"] = userInfo["created_at"]
-	ret["updated_at"] = userInfo["updated_at"]
-	ret["deleted_at"] = userInfo["deleted_at"]
-	return ret
+	// 	var ret = map[string]interface{}{}
+
+	// 	sqlStr := fmt.Sprintf("select * from fb_users where id='%s' limit 1;", userID)
+	// 	queryResult, err := db.Engine.QueryString(sqlStr)
+	// 	if err != nil {
+	// 		utils.UtilsLogger.Error(err)
+	// 		return ret
+	// 	}
+	// 	if len(queryResult) < 1 {
+	// 		return ret
+	// 	}
+	// 	userInfo := queryResult[0]
+	// 	ret["id"] = userInfo["id"]
+	// 	ret["phone"] = userInfo["phone"]
+	// 	ret["nickname"] = userInfo["nickname"]
+	// 	ret["avatar"] = userInfo["avatar"]
+	// 	ret["signature"] = userInfo["signature"]
+	// 	ret["status"] = userInfo["status"]
+	// 	ret["level"] = userInfo["level"]
+	// 	ret["score"] = userInfo["score"]
+	// 	ret["last_login"] = userInfo["last_login"]
+	// 	ret["created_at"] = userInfo["created_at"]
+	// 	ret["updated_at"] = userInfo["updated_at"]
+	// 	ret["deleted_at"] = userInfo["deleted_at"]
+	// 	return ret
 }
 
 // GetUserByPhone 根据手机号获取用户信息

@@ -30,7 +30,7 @@ func CountAdoptByUserID(userID string) int {
 }
 
 // AdoptPost 采纳
-func AdoptPost(uid string, pid string) bool {
+func AdoptPost(uid int64, pid int64) bool {
 	return db.AdoptPost(uid, pid)
 }
 
@@ -84,7 +84,7 @@ func UserAdpotPostList(uid string) []map[string]interface{} {
 }
 
 // GetAdoptListByUserPost 根据用户帖子获取采纳列表
-func GetAdoptListByUserPost(userID string, page string, size string) []map[string]interface{} {
+func GetAdoptListByUserPost(userID int64, page string, size string) []map[string]interface{} {
 	return db.GetAdoptListByUserPost(userID, page, size)
 }
 

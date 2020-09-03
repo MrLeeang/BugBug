@@ -36,7 +36,7 @@ func ActionPostPublish(c *gin.Context) {
 		postType = 4
 	}
 	var postData = map[string]interface{}{}
-	uid := c.Keys["UID"].(string)
+	uid := c.Keys["UID"].(int64)
 	postData["uid"] = uid
 	postData["cid"] = cid
 	postData["content"] = content

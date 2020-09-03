@@ -63,7 +63,7 @@ func AddPost(postData map[string]interface{}) map[string]interface{} {
 }
 
 // GetPostByID 获取帖子
-func GetPostByID(id string) models.FbPosts {
+func GetPostByID(id int64) models.FbPosts {
 	return db.GetPostByID(id)
 }
 

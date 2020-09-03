@@ -24,8 +24,12 @@ func ActionCreateComment(c *gin.Context) {
 		})
 		return
 	}
+	pidInt64, _ := strconv.ParseInt(pid, 10, 64)
+
+	pcidInt64, _ := strconv.ParseInt(pcid, 10, 64)
+
 	// 获取帖子
-	post := service.GetPostByID(pid)
+	post := service.GetPostByID(pidInt64)
 
 	if post.Id == 0 {
 		c.JSON(200, gin.H{
@@ -55,8 +59,8 @@ func ActionCreateComment(c *gin.Context) {
 
 	postCommentParams := map[string]interface{}{
 		"uid":     c.Keys["UID"],
-		"pid":     pid,
-		"pcid":    pcid,
+		"pid":     pidInt64,
+		"pcid":    pcidInt64,
 		"toUid":   toUID,
 		"content": content,
 	}
@@ -99,9 +103,7 @@ func ActionDeleteComment(c *gin.Context) {
 		return
 	}
 
-	uid := c.Keys["UID"].(string)
-	// string 转成int64
-	uidInt64, _ := strconv.ParseInt(uid, 10, 64)
+	uidInt64 := c.Keys["UID"].(int64)
 
 	if postComment.Uid != uidInt64 {
 		c.JSON(200, gin.H{
@@ -144,12 +146,12 @@ func ActionCommentReplyList(c *gin.Context) {
 
 // ActionCommentListByUser 我得评论列表
 func ActionCommentListByUser(c *gin.Context) {
-	uid := c.Keys["UID"].(string)
+	uidInt64 := c.Keys["UID"].(int64)
 	queryMap := map[string]interface{}{
-		"to_uid": uid,
+		"to_uid": uidInt64,
 	}
-
-	utils.RedisClient.Set(uid+"comment", 0)
+	uidString := strconv.FormatInt(uidInt64, 10)
+	utils.RedisClient.Set(uidString+"comment", 0)
 
 	PostCommentList := service.DetailPostComments(queryMap)
 

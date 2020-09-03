@@ -10,7 +10,7 @@ import (
 )
 
 // GetPostByID 根据id获取帖子
-func GetPostByID(id string) models.FbPosts {
+func GetPostByID(id int64) models.FbPosts {
 	var Post models.FbPosts
 	// 查询
 	_, err := Engine.Where("id = ?", id).Get(&Post)
@@ -95,10 +95,9 @@ func DetailPostList(params map[string]interface{}, keywords string, page int, si
 func AddPost(postData map[string]interface{}) models.FbPosts {
 	var post = &models.FbPosts{}
 
-	uid := postData["uid"].(string)
+	uidInt64 := postData["uid"].(int64)
 	cid := postData["cid"].(string)
 
-	uidInt64, _ := strconv.ParseInt(uid, 10, 64)
 	cidInt64, _ := strconv.ParseInt(cid, 10, 64)
 	post.Uid = uidInt64
 	post.Cid = cidInt64

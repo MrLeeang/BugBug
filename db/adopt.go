@@ -8,12 +8,10 @@ import (
 )
 
 // AdoptPost 采纳
-func AdoptPost(uid string, pid string) bool {
-	uidInt64, _ := strconv.ParseInt(uid, 10, 64)
-	pidInt64, _ := strconv.ParseInt(pid, 10, 64)
+func AdoptPost(uid int64, pid int64) bool {
 	adopt := &models.FbAdopts{}
-	adopt.Uid = uidInt64
-	adopt.Pid = pidInt64
+	adopt.Uid = uid
+	adopt.Pid = pid
 	adopt.CreatedAt = time.Now()
 	adopt.UpdatedAt = time.Now()
 	_, err := Engine.InsertOne(adopt)
@@ -38,7 +36,7 @@ func GetUserAdoptList(uid string) []models.FbAdopts {
 }
 
 // GetAdoptListByUserPost 用户帖子点赞列表
-func GetAdoptListByUserPost(userID string, page string, size string) []map[string]interface{} {
+func GetAdoptListByUserPost(userID int64, page string, size string) []map[string]interface{} {
 	pageInt, _ := strconv.Atoi(page)
 	sizeInt, _ := strconv.Atoi(size)
 	sqlStr := `SELECT

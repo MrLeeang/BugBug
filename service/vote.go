@@ -29,16 +29,16 @@ func CountVoteByUserID(userID string) int {
 }
 
 // AddVote 点赞
-func AddVote(uid string, pid string, pcid string, result string) bool {
+func AddVote(uid int64, pid int64, pcid int64, result string) bool {
 	return db.AddVote(uid, pid, pcid, result)
 }
 
 // CancelVote 取消点赞
-func CancelVote(pid string, pcid string, uid string) bool {
+func CancelVote(pid int64, pcid int64, uid int64) bool {
 	return db.CancelVote(pid, pcid, uid)
 }
 
 // GetVoteListByUserPost 根据用户帖子获取点赞列表
-func GetVoteListByUserPost(userID string, page string, size string) []map[string]interface{} {
+func GetVoteListByUserPost(userID int64, page string, size string) []map[string]interface{} {
 	return db.GetVoteListByUserPost(userID, page, size)
 }

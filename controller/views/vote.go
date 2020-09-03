@@ -28,7 +28,8 @@ func ActionVotePost(c *gin.Context) {
 		})
 		return
 	}
-	postModel := service.GetPostByID(pid)
+	pidInt64, _ := strconv.ParseInt(pid, 10, 64)
+	postModel := service.GetPostByID(pidInt64)
 	uidInt64 := postModel.Uid
 	if uidInt64 == 0 {
 		c.JSON(200, gin.H{
@@ -37,8 +38,10 @@ func ActionVotePost(c *gin.Context) {
 		})
 		return
 	}
-	uid := c.Keys["UID"].(string)
-	ok := service.AddVote(uid, pid, pcid, result)
+	uid := c.Keys["UID"].(int64)
+	// string 转成int64
+	pcidInt64, _ := strconv.ParseInt(pcid, 10, 64)
+	ok := service.AddVote(uid, pidInt64, pcidInt64, result)
 	if !ok {
 		c.JSON(200, gin.H{
 			"error_code": 7000,
@@ -75,13 +78,15 @@ func ActionVoteCancel(c *gin.Context) {
 		return
 	}
 	var ok bool
-	uid := c.Keys["UID"].(string)
+	uid := c.Keys["UID"].(int64)
+	pidInt64, _ := strconv.ParseInt(pid, 10, 64)
+	pcidInt64, _ := strconv.ParseInt(pcid, 10, 64)
 	// 取消帖子点赞
 	if pid != "" {
-		ok = service.CancelVote(pid, pcid, uid)
+		ok = service.CancelVote(pidInt64, pcidInt64, uid)
 	} else {
 		// 取消帖子点赞
-		ok = service.CancelVote("0", pcid, uid)
+		ok = service.CancelVote(0, pcidInt64, uid)
 	}
 
 	if !ok {
@@ -99,7 +104,7 @@ func ActionVoteCancel(c *gin.Context) {
 
 // GetVoteListByUserPost 根据用户帖子获取点赞列表
 func GetVoteListByUserPost(c *gin.Context) {
-	uid := c.Keys["UID"].(string)
+	uid := c.Keys["UID"].(int64)
 	page := c.Query("page")
 	size := c.Query("size")
 
@@ -109,8 +114,8 @@ func GetVoteListByUserPost(c *gin.Context) {
 	if size == "" {
 		size = "10"
 	}
-
-	utils.RedisClient.Set(uid+"vote", 0)
+	uidString := strconv.FormatInt(uid, 10)
+	utils.RedisClient.Set(uidString+"vote", 0)
 
 	data := service.GetVoteListByUserPost(uid, page, size)
 	c.JSON(200, gin.H{
@@ -122,8 +127,9 @@ func GetVoteListByUserPost(c *gin.Context) {
 
 // ActionMsgadopt ActionMsgadopt
 func ActionMsgadopt(c *gin.Context) {
-	uid := c.Keys["UID"].(string)
-	voteNum, _ := redis.Int64(utils.RedisClient.Get(uid + "adopt"))
+	uid := c.Keys["UID"].(int64)
+	uidString := strconv.FormatInt(uid, 10)
+	voteNum, _ := redis.Int64(utils.RedisClient.Get(uidString + "adopt"))
 	c.JSON(200, gin.H{
 		"error_code": 0,
 		"msg":        "success",
@@ -135,8 +141,9 @@ func ActionMsgadopt(c *gin.Context) {
 
 // ActionMsglike ActionMsglike
 func ActionMsglike(c *gin.Context) {
-	uid := c.Keys["UID"].(string)
-	voteNum, _ := redis.Int64(utils.RedisClient.Get(uid + "vote"))
+	uid := c.Keys["UID"].(int64)
+	uidString := strconv.FormatInt(uid, 10)
+	voteNum, _ := redis.Int64(utils.RedisClient.Get(uidString + "vote"))
 	c.JSON(200, gin.H{
 		"error_code": 0,
 		"msg":        "success",
@@ -148,8 +155,9 @@ func ActionMsglike(c *gin.Context) {
 
 // ActionMsgcomment ActionMsgcomment
 func ActionMsgcomment(c *gin.Context) {
-	uid := c.Keys["UID"].(string)
-	voteNum, _ := redis.Int64(utils.RedisClient.Get(uid + "comment"))
+	uid := c.Keys["UID"].(int64)
+	uidString := strconv.FormatInt(uid, 10)
+	voteNum, _ := redis.Int64(utils.RedisClient.Get(uidString + "comment"))
 	c.JSON(200, gin.H{
 		"error_code": 0,
 		"msg":        "success",
