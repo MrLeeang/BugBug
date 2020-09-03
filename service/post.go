@@ -102,7 +102,7 @@ func DetailPostList(queryMap map[string]interface{}, keywords string, page int, 
 		postData["topics"] = emptyList
 		postData["circle"] = emptyList
 		// 视频信息
-		postData["video"] = db.GetPostVideoByPostID(post.Id)
+		postData["video"] = db.GetPostVideoByPostID(post.Id).Url
 
 		allPostInfoList = append(allPostInfoList, postData)
 	}

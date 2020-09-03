@@ -40,7 +40,7 @@ func MakeRouter(r *gin.Engine) {
 	v1.POST("/post/publish", views.AuthHandler(), views.ActionPostPublish)
 	// 用户的帖子列表
 	v1.GET("/user/:userId/posts", views.ActionUserPostList)
-	// 推荐的帖子列表
+	// 推荐的帖子列表 recommends
 	v1.GET("/post/:postID", views.ActionRecommendPostList)
 	// 帖子详情
 	v1.GET("/post/:postID/info", views.ActionPostInfo)
