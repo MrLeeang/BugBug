@@ -72,7 +72,7 @@ func ActionUserLogin(c *gin.Context) {
 	// 获取用户信息
 	utils.UtilsLogger.Info(code)
 	userInfo := service.GetUserByPhone(phone)
-	if userInfo["id"] == nil {
+	if userInfo.Id == 0 {
 		c.JSON(200, gin.H{
 			"error_code": 11002,
 			"msg":        "用户不存在",
@@ -80,12 +80,12 @@ func ActionUserLogin(c *gin.Context) {
 		return
 	}
 
-	tokenStr := service.GenerateToken(userInfo["id"])
+	tokenStr := service.GenerateToken(userInfo.Id)
 	ret["token"] = tokenStr
-	ret["nickname"] = userInfo["nickname"]
+	ret["nickname"] = userInfo.Nickname
 	ret["expire_time"] = int64(time.Now().Add(time.Hour * 72).Unix())
-	ret["avatar"] = userInfo["avatar"]
-	ret["uid"] = userInfo["id"]
+	ret["avatar"] = userInfo.Avatar
+	ret["uid"] = userInfo.Id
 	c.JSON(200, gin.H{
 		"error_code": 0,
 		"msg":        "登录成功",

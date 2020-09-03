@@ -5,11 +5,9 @@ import (
 	"BugBug/models"
 	"BugBug/utils"
 	"encoding/json"
-	"fmt"
 	"io/ioutil"
 	"net/http"
 	"net/http/cookiejar"
-	"strconv"
 	"strings"
 	"time"
 
@@ -68,33 +66,38 @@ func GetUserByID(userID string) models.FbUsers {
 }
 
 // GetUserByPhone 根据手机号获取用户信息
-func GetUserByPhone(phone string) map[string]interface{} {
+func GetUserByPhone(phone string) models.FbUsers {
 
-	var ret = map[string]interface{}{}
+	userList := db.DetailUsers("phone", phone)
+	if userList == nil {
+		return models.FbUsers{}
+	}
+	return userList[0]
+	// var ret = map[string]interface{}{}
 
-	sqlStr := fmt.Sprintf("select * from fb_users where phone='%s' limit 1;", phone)
-	queryResult, err := db.Engine.QueryString(sqlStr)
-	if err != nil {
-		utils.UtilsLogger.Error(err)
-		return ret
-	}
-	if len(queryResult) < 1 {
-		return ret
-	}
-	userInfo := queryResult[0]
-	ret["id"], _ = strconv.Atoi(userInfo["id"])
-	ret["phone"] = userInfo["phone"]
-	ret["nickname"] = userInfo["nickname"]
-	ret["avatar"] = userInfo["avatar"]
-	ret["signature"] = userInfo["signature"]
-	ret["status"] = userInfo["status"]
-	ret["level"] = userInfo["level"]
-	ret["score"] = userInfo["score"]
-	ret["last_login"] = userInfo["last_login"]
-	ret["created_at"] = userInfo["created_at"]
-	ret["updated_at"] = userInfo["updated_at"]
-	ret["deleted_at"] = userInfo["deleted_at"]
-	return ret
+	// sqlStr := fmt.Sprintf("select * from fb_users where phone='%s' limit 1;", phone)
+	// queryResult, err := db.Engine.QueryString(sqlStr)
+	// if err != nil {
+	// 	utils.UtilsLogger.Error(err)
+	// 	return ret
+	// }
+	// if len(queryResult) < 1 {
+	// 	return ret
+	// }
+	// userInfo := queryResult[0]
+	// ret["id"], _ = strconv.ParseInt(userInfo["id"], 10, 64)
+	// ret["phone"] = userInfo["phone"]
+	// ret["nickname"] = userInfo["nickname"]
+	// ret["avatar"] = userInfo["avatar"]
+	// ret["signature"] = userInfo["signature"]
+	// ret["status"] = userInfo["status"]
+	// ret["level"] = userInfo["level"]
+	// ret["score"] = userInfo["score"]
+	// ret["last_login"] = userInfo["last_login"]
+	// ret["created_at"] = userInfo["created_at"]
+	// ret["updated_at"] = userInfo["updated_at"]
+	// ret["deleted_at"] = userInfo["deleted_at"]
+	// return ret
 }
 
 // VerifyLoginCode 验证码验证
@@ -165,11 +168,11 @@ type jwtCustomClaims struct {
 	jwt.StandardClaims
 
 	// 追加自己需要的信息
-	UID interface{} // 用户id
+	UID int64 // 用户id
 }
 
 // GenerateToken 生成token
-func GenerateToken(uid interface{}) string {
+func GenerateToken(uid int64) string {
 	claims := &jwtCustomClaims{
 		jwt.StandardClaims{
 			ExpiresAt: int64(time.Now().Add(time.Hour * 72).Unix()),

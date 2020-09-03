@@ -27,6 +27,9 @@ func AuthHandler() gin.HandlerFunc {
 		// gin上下文存储context.Keys，verifyMap报存到上下文中
 		verifyMap := map[string]interface{}{}
 		for key, val := range verify {
+			if key == "UID" {
+				val = int64(val.(float64))
+			}
 			verifyMap[key] = val
 		}
 		context.Keys = verifyMap
