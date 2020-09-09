@@ -43,7 +43,7 @@ func MakeRouter(r *gin.Engine) {
 	// 推荐的帖子列表 recommends
 	v1.GET("/post/:postID", views.ActionRecommendPostList)
 	// 帖子详情
-	v1.GET("/post/:postID/info", views.ActionPostInfo)
+	v1.GET("/post/:postID/info", views.ActionPostInfo1)
 
 	// messages
 	// 点赞我的
