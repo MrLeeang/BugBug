@@ -110,6 +110,9 @@ func DetailPostList(queryMap map[string]interface{}, keywords string, page int, 
 }
 
 
+
+
+
 func DetailPostList1(queryMap map[string]interface{}, keywords string, page int, size int) map[string]interface{} {
 	var postData1 = map[string]interface{}{}
 	var postData2 = map[string]interface{}{}
@@ -162,4 +165,3 @@ func DetailPostList1(queryMap map[string]interface{}, keywords string, page int,
 	postData1["is_adopt"] = false
 	return postData1
 }
-
