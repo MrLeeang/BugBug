@@ -123,8 +123,9 @@ func ActionPostInfo(c *gin.Context) {
 	if len(postList) == 0 {
 		c.JSON(200, gin.H{
 			"data":       nil,
-			"error_code": 0,
-			"msg":        "success.",
+			"error_code": 3103,
+			"msg":        "帖子不存在.",
+			"trace": "",
 		})
 		return
 	}
