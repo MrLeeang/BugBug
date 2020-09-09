@@ -135,3 +135,28 @@ func ActionPostInfo(c *gin.Context) {
 	})
 
 }
+
+
+
+
+func ActionPostInfo1(c *gin.Context) {
+	postID := c.Param("postID")
+	queryMap := map[string]interface{}{}
+	queryMap["id"] = postID
+	postList := service.DetailPostList1(queryMap, "", 1, 50)
+	if len(postList) == 0 {
+		c.JSON(200, gin.H{
+			"data":       nil,
+			"error_code": 3103,
+			"msg":        "帖子不存在.",
+			"trace": "",
+		})
+		return
+	}
+	c.JSON(200, gin.H{
+		"data":       postList,
+		"error_code": 0,
+		"msg":        "success.",
+	})
+
+}
