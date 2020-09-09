@@ -108,3 +108,58 @@ func DetailPostList(queryMap map[string]interface{}, keywords string, page int, 
 	}
 	return allPostInfoList
 }
+
+
+func DetailPostList1(queryMap map[string]interface{}, keywords string, page int, size int) map[string]interface{} {
+	var postData1 = map[string]interface{}{}
+	var postData2 = map[string]interface{}{}
+	emptyList := []string{}
+	allPostInfoList := db.Test2(queryMap["id"])
+	allPostInfoUser := db.User(queryMap["id"])
+	allPostInfoCircle := db.Circle(queryMap["id"])
+	postIms := db.PostIms(queryMap["id"])
+	postVideo := db.PostVideo(queryMap["id"])
+	if allPostInfoList == nil{
+		return postData1
+	}
+	// 判断img是否有值
+	if postIms == nil {
+		postData1["imgs"] = emptyList
+	} else {
+		postData1["imgs"] = postIms
+	}
+	// 判断biedo是否有值
+	if postVideo == nil {
+		postData1["viedo"] = nil
+	} else {
+		postData1["viedo"] = postVideo
+	}
+
+	// 处理Circle
+
+
+	for a,i := range allPostInfoCircle[0]{
+			postData2[a] = i
+	}
+	postData2["is_owner"] = true
+	postData2["is_join"] = false
+	postData2["is_admin"] = true
+	// 写入字典
+	OuterLoop:
+		for a,i := range allPostInfoList[0]{
+			if i == ""{
+				postData1[a] = nil
+				continue OuterLoop
+			}
+			postData1[a] = i
+		}
+
+	postData1["user"] = allPostInfoUser[0]
+	postData1["circle"] = postData2
+	postData1["topics"] = emptyList
+	postData1["is_self"] = false
+	postData1["is_vote"] = false
+	postData1["is_adopt"] = false
+	return postData1
+}
+
