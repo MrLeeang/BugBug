@@ -70,7 +70,7 @@ func ActionUserLogin(c *gin.Context) {
 	// 	return
 	// }
 	// 获取用户信息
-	utils.UtilsLogger.Info(code)
+	utils.Logger.Info(code)
 	userInfo := service.GetUserByPhone(phone)
 	if userInfo.Id == 0 {
 		c.JSON(200, gin.H{

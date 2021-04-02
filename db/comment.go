@@ -27,7 +27,7 @@ func CreateComment(params map[string]interface{}) (bool, models.FbPostComments) 
 
 	_, err := Engine.InsertOne(postComment)
 	if err != nil {
-		utils.UtilsLogger.Error(err)
+		utils.Logger.Error(err)
 		return false, *postComment
 	}
 
@@ -41,7 +41,7 @@ func GetPostCommentByID(id string) models.FbPostComments {
 	_, err := Engine.Where("id = ?", id).Get(&PostComment)
 
 	if err != nil {
-		utils.UtilsLogger.Error(err)
+		utils.Logger.Error(err)
 	}
 
 	return PostComment
@@ -52,7 +52,7 @@ func DeleteCommentByID(id string) bool {
 	var PostComment models.FbPostComments
 	_, err := Engine.ID(id).Delete(&PostComment)
 	if err != nil {
-		utils.UtilsLogger.Error(err)
+		utils.Logger.Error(err)
 		return false
 	}
 	return true
@@ -66,7 +66,7 @@ func DetailPostComments(params map[string]interface{}) []models.FbPostComments {
 	m := reflect.ValueOf(params)
 	// 不是map
 	if m.Kind() != reflect.Map {
-		utils.UtilsLogger.Error("params error")
+		utils.Logger.Error("params error")
 		return PostCommentList
 	}
 
@@ -80,7 +80,7 @@ func DetailPostComments(params map[string]interface{}) []models.FbPostComments {
 	}
 	var err = query.Find(&PostCommentList)
 	if err != nil {
-		utils.UtilsLogger.Error(err)
+		utils.Logger.Error(err)
 	}
 
 	return PostCommentList

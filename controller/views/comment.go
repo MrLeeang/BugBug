@@ -55,7 +55,7 @@ func ActionCreateComment(c *gin.Context) {
 		toUID = post.Uid
 	}
 
-	utils.UtilsLogger.Info(pid, pcid, content, toUID)
+	utils.Logger.Info(pid, pcid, content, toUID)
 
 	postCommentParams := map[string]interface{}{
 		"uid":     c.Keys["UID"],

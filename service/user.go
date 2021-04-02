@@ -43,7 +43,7 @@ func GetUserByID(userID string) models.FbUsers {
 	// 	sqlStr := fmt.Sprintf("select * from fb_users where id='%s' limit 1;", userID)
 	// 	queryResult, err := db.Engine.QueryString(sqlStr)
 	// 	if err != nil {
-	// 		utils.UtilsLogger.Error(err)
+	// 		utils.Logger.Error(err)
 	// 		return ret
 	// 	}
 	// 	if len(queryResult) < 1 {
@@ -78,7 +78,7 @@ func GetUserByPhone(phone string) models.FbUsers {
 	// sqlStr := fmt.Sprintf("select * from fb_users where phone='%s' limit 1;", phone)
 	// queryResult, err := db.Engine.QueryString(sqlStr)
 	// if err != nil {
-	// 	utils.UtilsLogger.Error(err)
+	// 	utils.Logger.Error(err)
 	// 	return ret
 	// }
 	// if len(queryResult) < 1 {
@@ -107,8 +107,8 @@ func VerifyLoginCode(phone string, code string) bool {
 	// app key
 	appKey := "2eca699e046f4"
 	// 申明并创建一个cookie
-	var gCurCookieJar *cookiejar.Jar
-	gCurCookieJar = new(cookiejar.Jar)
+	// var gCurCookieJar *cookiejar.Jar
+	gCurCookieJar := new(cookiejar.Jar)
 	// 创建一个http client
 	httpClient := &http.Client{
 		CheckRedirect: nil,
@@ -135,7 +135,7 @@ func VerifyLoginCode(phone string, code string) bool {
 		strings.NewReader(bodyStr),
 	)
 	if err != nil {
-		utils.UtilsLogger.Error(err.Error())
+		utils.Logger.Error(err.Error())
 		return false
 	}
 	// 关闭请求
@@ -146,12 +146,12 @@ func VerifyLoginCode(phone string, code string) bool {
 	ret := map[string]interface{}{}
 	err = json.Unmarshal(body, &ret)
 	if err != nil {
-		utils.UtilsLogger.Error(err.Error())
+		utils.Logger.Error(err.Error())
 		return false
 	}
 	// 判断返回值
 	if ret["status"] != 200 {
-		utils.UtilsLogger.Error(ret)
+		utils.Logger.Error(ret)
 		return false
 	}
 	return true
@@ -183,7 +183,7 @@ func GenerateToken(uid int64) string {
 	token := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
 	tokenString, err := token.SignedString([]byte(SecretKey))
 	if err != nil {
-		utils.UtilsLogger.Error(err)
+		utils.Logger.Error(err)
 		return ""
 	}
 	return tokenString

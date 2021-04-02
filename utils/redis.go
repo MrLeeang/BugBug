@@ -147,7 +147,7 @@ func (redis Redis) Hset(key string, dataMap map[string]interface{}) (interface{}
 	m := reflect.ValueOf(dataMap)
 	// 不是map
 	if m.Kind() != reflect.Map {
-		UtilsLogger.Error("params error")
+		Logger.Error("params error")
 		return nil, nil
 	}
 

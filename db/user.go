@@ -35,7 +35,7 @@ func QueryUsers() []models.FbUsers {
 	var err = Engine.Find(&allUsers)
 
 	if err != nil {
-		utils.UtilsLogger.Error(err)
+		utils.Logger.Error(err)
 	}
 
 	return allUsers
@@ -50,7 +50,7 @@ func DetailUsers(key string, value string) []models.FbUsers {
 	var err = Engine.Where(sqlString, value).Find(&UserList)
 
 	if err != nil {
-		utils.UtilsLogger.Error(err)
+		utils.Logger.Error(err)
 	}
 
 	return UserList
@@ -64,7 +64,7 @@ func GetUserByID(id string) models.FbUsers {
 	_, err := Engine.Where("id = ?", id).Get(&User)
 
 	if err != nil {
-		utils.UtilsLogger.Error(err)
+		utils.Logger.Error(err)
 	}
 
 	return User
@@ -79,7 +79,7 @@ func UpdateUserInfoByID(id int64, nickname string, signature string, sex int, av
 	user.Avatar = avatar
 	_, err := Engine.ID(id).Update(user)
 	if err != nil {
-		utils.UtilsLogger.Error(err)
+		utils.Logger.Error(err)
 		return false, *user
 	}
 	user.Id = id

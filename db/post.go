@@ -16,7 +16,7 @@ func GetPostByID(id int64) models.FbPosts {
 	_, err := Engine.Where("id = ?", id).Get(&Post)
 
 	if err != nil {
-		utils.UtilsLogger.Error(err)
+		utils.Logger.Error(err)
 	}
 
 	return Post
@@ -29,7 +29,7 @@ func GetPostByIDs(ids []int64) []models.FbPosts {
 	err := Engine.In("id", ids).Find(&posts)
 
 	if err != nil {
-		utils.UtilsLogger.Error(err)
+		utils.Logger.Error(err)
 	}
 
 	return posts
@@ -40,7 +40,7 @@ func GetPostImagesByPostID(postID int64) []models.FbPostImgs {
 	var postIms []models.FbPostImgs
 	err := Engine.Where("pid = ?", postID).Find(&postIms)
 	if err != nil {
-		utils.UtilsLogger.Error(err)
+		utils.Logger.Error(err)
 	}
 
 	return postIms
@@ -52,7 +52,7 @@ func GetPostVideoByPostID(postID int64) models.FbPostVideos {
 	var postVideo models.FbPostVideos
 	_, err := Engine.Where("pid = ?", postID).Get(&postVideo)
 	if err != nil {
-		utils.UtilsLogger.Error(err)
+		utils.Logger.Error(err)
 	}
 
 	return postVideo
@@ -68,7 +68,7 @@ func DetailPostList(params map[string]interface{}, keywords string, page int, si
 	m := reflect.ValueOf(params)
 	// 不是map
 	if m.Kind() != reflect.Map {
-		utils.UtilsLogger.Error("params error")
+		utils.Logger.Error("params error")
 		return postList
 	}
 
@@ -85,7 +85,7 @@ func DetailPostList(params map[string]interface{}, keywords string, page int, si
 	}
 	var err = query.Limit(size*page, (page-1)*size).Find(&postList)
 	if err != nil {
-		utils.UtilsLogger.Error(err)
+		utils.Logger.Error(err)
 	}
 
 	return postList
@@ -115,7 +115,7 @@ func AddPost(postData map[string]interface{}) models.FbPosts {
 	post.UpdatedAt = time.Now()
 	_, err := Engine.InsertOne(post)
 	if err != nil {
-		utils.UtilsLogger.Error(err)
+		utils.Logger.Error(err)
 		return *post
 	}
 	return *post
@@ -141,7 +141,7 @@ func AddPostImg(imgData map[string]interface{}) models.FbPostImgs {
 	postImg.UpdatedAt = time.Now()
 	_, err := Engine.InsertOne(postImg)
 	if err != nil {
-		utils.UtilsLogger.Error(err)
+		utils.Logger.Error(err)
 		return *postImg
 	}
 	return *postImg
@@ -166,7 +166,7 @@ func AddPostTopic(topicData map[string]interface{}) models.FbPostTopics {
 	topicImg.UpdatedAt = time.Now()
 	_, err := Engine.InsertOne(topicImg)
 	if err != nil {
-		utils.UtilsLogger.Error(err)
+		utils.Logger.Error(err)
 		return *topicImg
 	}
 	return *topicImg

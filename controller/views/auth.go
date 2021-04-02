@@ -13,7 +13,7 @@ func AuthHandler() gin.HandlerFunc {
 		tokenStr := context.Request.Header.Get("token")
 		verify := service.VerifyToken(tokenStr)
 		if verify == nil {
-			utils.UtilsLogger.Error(verify)
+			utils.Logger.Error(verify)
 			var ret = map[string]interface{}{}
 			retCode := utils.RetCode.LoginError
 			ret["code"] = retCode

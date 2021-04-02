@@ -3,6 +3,7 @@ package db
 import (
 	"BugBug/utils"
 	"fmt"
+
 	// 数据库驱动
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/xormplus/xorm"
@@ -19,13 +20,13 @@ func CreateEngine() *xorm.Engine {
 	)
 	engine, err := xorm.NewEngine(utils.DbType, dbString)
 	if err != nil {
-		utils.UtilsLogger.Error(err)
+		utils.Logger.Error(err)
 	}
 	// 设置连接池空闲数
 	engine.SetMaxIdleConns(20)
 	// 最大打开连接数
 	engine.SetMaxOpenConns(100)
-	engine.SetLogger(utils.UtilsLogger)
+	engine.SetLogger(utils.Logger)
 	return engine
 }
 

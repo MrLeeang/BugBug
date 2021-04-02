@@ -21,7 +21,7 @@ func (s *MyFormatter) Format(entry *logrus.Entry) ([]byte, error) {
 }
 
 // Logger 定义日志
-func Logger() *logrus.Logger {
+func logger() *logrus.Logger {
 	// now := time.Now()
 	// logFilePath := ""
 	// if dir, err := os.Getwd(); err == nil {
@@ -65,5 +65,5 @@ func Logger() *logrus.Logger {
 	return logger
 }
 
-// UtilsLogger 打印日志调用
-var UtilsLogger = Logger()
+// Logger 打印日志调用
+var Logger = logger()

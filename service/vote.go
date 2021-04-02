@@ -13,7 +13,7 @@ func CountVoteByUserID(userID string) int {
 	queryStr := fmt.Sprintf("select count(id) from fb_votes where uid='%s';", userID)
 	queryResult, err := db.Engine.QueryString(queryStr)
 	if err != nil {
-		utils.UtilsLogger.Error(err)
+		utils.Logger.Error(err)
 		return 0
 	}
 	if len(queryResult) < 1 {
@@ -22,7 +22,7 @@ func CountVoteByUserID(userID string) int {
 	queryInfo := queryResult[0]
 	voteCount, err := strconv.Atoi(queryInfo["count(id)"])
 	if err != nil {
-		utils.UtilsLogger.Error(err)
+		utils.Logger.Error(err)
 		return 0
 	}
 	return voteCount

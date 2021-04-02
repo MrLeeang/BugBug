@@ -16,7 +16,7 @@ func AdoptPost(uid int64, pid int64) bool {
 	adopt.UpdatedAt = time.Now()
 	_, err := Engine.InsertOne(adopt)
 	if err != nil {
-		utils.UtilsLogger.Error(err)
+		utils.Logger.Error(err)
 		return false
 	}
 
@@ -29,7 +29,7 @@ func GetUserAdoptList(uid string) []models.FbAdopts {
 	var err = Engine.Where("uid=?", uid).Find(&doptList)
 
 	if err != nil {
-		utils.UtilsLogger.Error(err)
+		utils.Logger.Error(err)
 	}
 
 	return doptList
@@ -54,7 +54,7 @@ WHERE
 	AND p.id IN ( SELECT id FROM fb_posts WHERE uid = ? )`
 	results, err := Engine.SQL(sqlStr, userID).Query().ListPage(pageInt, sizeInt)
 	if err != nil {
-		utils.UtilsLogger.Error(err)
+		utils.Logger.Error(err)
 		return []map[string]interface{}{}
 	}
 	return results
@@ -79,7 +79,7 @@ WHERE
 	AND adopt.uid =?`
 	results, err := Engine.SQL(sqlStr, userID).Query().ListPage(pageInt, sizeInt)
 	if err != nil {
-		utils.UtilsLogger.Error(err)
+		utils.Logger.Error(err)
 		return []map[string]interface{}{}
 	}
 	return results

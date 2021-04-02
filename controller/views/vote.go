@@ -51,7 +51,7 @@ func ActionVotePost(c *gin.Context) {
 	}
 	// 更新redis
 
-	utils.UtilsLogger.Info(uidInt64)
+	utils.Logger.Info(uidInt64)
 	if uidInt64 != 0 {
 		uidString := strconv.FormatInt(uidInt64, 10)
 		voteNum, _ := redis.Int64(utils.RedisClient.Get(uidString + "vote"))
